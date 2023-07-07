@@ -1,0 +1,30 @@
+.navBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: #203864 solid 4px;
+}
+
+.navBar_link {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 60px;
+}
+
+.navBar_link_element {
+    font-size: 24px;
+    color: #203864;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.navBar_link_element_current {
+    font-size: 24px;
+    color: #203864;
+    text-decoration: underline;
+    font-weight: 700;
+
+}

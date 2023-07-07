@@ -1,0 +1,160 @@
+body {
+  margin: 0;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%;
+  box-sizing: border-box;
+  padding-right: 100px;
+  padding-left: 100px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.flexColumnGeneral {
+  margin-top: 50px;
+  background-color: #C9D4DA;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 50px;
+  padding: 35px;
+}
+
+.rowGap50px {
+  display: flex;
+  flex-direction: column;
+  row-gap: 50px;
+}
+
+.rowGap20px {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.rowGap15px {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  padding: 20px;
+}
+
+.titleH1 {
+  color: #203864;
+  font-size: 30px;
+  margin: 0;
+  text-decoration: underline;
+  line-height: 110%;
+}
+
+.titleH2 {
+  width: fit-content;
+  color: #203864;
+  font-size: 20px;
+  margin: 0;
+  padding-left: 12px;
+  padding-right: 12px;
+  line-height: 150%;
+  background-color:#F7F7F7;
+  border: #203864 solid 2px;
+  border-radius: 25px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+  color: #203864;
+  font-size: 20px;
+  border: solid 3px #203864;
+  border-radius: 25px;
+  padding: 20px;
+}
+
+.formElement {
+  border-color: #203864;
+  border-radius: 20px;
+  font-size: 20px;
+  width: 200px;
+  padding-left: 20px;
+  background-color: #F7F7F7;
+}
+
+.formBtn {
+  width: 300px;
+  border-color: #203864;
+  border-radius: 20px;
+  font-size: 20px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.lineChart {
+  display: flex;
+  justify-content: center;
+}
+
+.lineChartElement {
+  width: 1200px;
+}
+
+.closed {
+  display: none;
+}
+
+.navLinkModify {
+  border: #203864 solid 2px;
+  border-radius: 25px;
+  text-align: center;
+  background-color: #DCDCDC;
+  text-decoration: none;
+  color: #203864;
+  width: 100px;
+}
+
+.red {
+  background-color: #c73819;
+  color: white;
+  font-weight: bold;
+  border: none
+}
+
+.formDate {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+  color: #203864;
+  font-size: 20px;
+}
+
+.formDateFlex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: solid 3px #203864;
+  border-radius: 25px;
+  padding: 20px;
+  align-items: center;
+}
+
+.reinitiate {
+  border-radius: 25px;
+  text-align: center;
+  background-color: #DCDCDC;
+  text-decoration: none;
+  color: #203864;
+  height: 45px;
+  font-size: 15px;
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #c73819;
+  color: white;
+  font-weight: bold;
+  border: none
+}
+
+

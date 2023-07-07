@@ -1,0 +1,13 @@
+.navlink {
+    border: solid 2px #203864;
+    border-radius: 25px;
+    width: 350px;
+    height: 35px;
+    font-size: 20px;
+    background-color: #DCDCDC;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}

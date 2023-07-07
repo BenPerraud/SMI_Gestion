@@ -1,0 +1,34 @@
+.tooltip {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    background-color: #F7F7F7;
+    padding: 15px;
+    border: #203864 solid 2px;
+    border-radius: 25px;
+}
+
+.tooltipElement {
+    font-size: 15px;
+    margin: 0;
+    line-height: 150%;
+    color: #203864;
+}
+
+.tooltipList {
+    margin: 0;
+    padding: 0;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
+.tooltipElementList {
+   font-style: italic;
+   font-size: 12px;
+   margin: 0;
+   padding: 0;
+   line-height: 100%;
+   color: #203864;
+}

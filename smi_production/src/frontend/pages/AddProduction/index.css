@@ -1,0 +1,89 @@
+.widthPi{
+    width: 200px;
+}
+
+.widthClient{
+    width: 300px;
+}
+
+.widthDesignation{
+    width: 400px;
+}
+
+.widthDate{
+    width: 200px;
+}
+
+.widthOperator{
+    width: 350px;
+}
+
+.widthTimeProd{
+    width: 60px;
+    padding-right: 12px;
+}
+
+.widthProdTheo{
+    width: 200px;
+}
+
+.widthProdQuantity{
+    width: 200px;
+}
+
+.widthProdWaste{
+    width: 200px;
+}
+
+.widthComments{
+    width: 600px;
+}
+
+.operatorsFlex {
+    display: flex;
+    row-gap: 20px;
+    column-gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.cards {
+    border: solid 2px #203864;
+    border-radius: 25px;
+    padding: 20px;
+    width: 375px;
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    justify-content: space-between;
+    background-color: #F7F7F7;
+}
+
+.cardsOperator {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    row-gap: 12px;
+}
+
+.cardsOperatorElement {
+    margin: 0;
+    color: #203864;
+    font-size: 20px;
+}
+
+.btnOperatorFlex {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    justify-content: center;
+}
+
+.btnOperator {
+    font-size: 15px;
+    width: 100px;
+    height: 30px;
+    border-radius: 25px;
+    border-color: #203864;
+}
+
