@@ -58,7 +58,13 @@ function DailyProd () {
     
     useEffect(() => {
         const reqDate = parseInt(dateURL)
-        fetch("http://localhost:3000/api/production/date/"+dateURL)
+        fetch("http://localhost:3000/api/production/date/"+dateURL,
+            {headers: {
+                "Accept": "*",
+                "Content-Type": "*/*",
+                "access-control-allow-origin": "*",
+                },
+            })
             .then(res => res.json())
             .then(res => setProductions(createNewObjectProd(createDayProd(res, reqDate))))
             .catch(error => alert("Erreur : " + error))
