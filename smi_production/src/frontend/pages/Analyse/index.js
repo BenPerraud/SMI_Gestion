@@ -14,14 +14,18 @@ function Analyse () {
     const [productionsCopy, setProductionsCopy] = useState ([])
 
     function getDate (e) {
-        e.preventDefault()
+        try {
+            e.preventDefault()
 
-        const firstDateInput = convertDateFormToTime(document.getElementById("dateBegin").value)
-        const lastDateInput = convertDateFormToTime(document.getElementById("dateEnd").value)
-        
-        const result = productions.filter(element => element.dateTime >= firstDateInput && element.dateTime <= lastDateInput)
-        const resultwithtrend = formatTrend(result)
-        setProductions(resultwithtrend)
+            const firstDateInput = convertDateFormToTime(document.getElementById("dateBegin").value)
+            const lastDateInput = convertDateFormToTime(document.getElementById("dateEnd").value)
+            
+            const result = productions.filter(element => element.dateTime >= firstDateInput && element.dateTime <= lastDateInput)
+            const resultwithtrend = formatTrend(result)
+            setProductions(resultwithtrend)
+        } catch {
+            alert("Les dates renseignées ne correspondent pas")
+        }
     }
 
     function reinitiate (e) {
