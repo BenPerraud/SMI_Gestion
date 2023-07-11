@@ -51,7 +51,7 @@ function AddProduction ({pi, client, designation, setCount}) {
                 alert("Les heures ou les minutes ne sont pas renseignées, veuillez recommencer")
                 break
             } else {
-                if (value === "") {
+                if (value === "" || null) {
                 alert("Un des champs du questionnaire n'est pas rempli")
                 break
                 } else { 
