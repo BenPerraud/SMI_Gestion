@@ -10,7 +10,7 @@ function AddProduction ({pi, client, designation, setCount}) {
     
     useEffect (() => {
         fetch(
-            "http://localhost:3001/api/operator",
+            "http://192.168.74.1:3001/api/operator",
             {headers: {
                 "Accept": "*",
                 "Content-Type": "*/*",
@@ -60,7 +60,7 @@ function AddProduction ({pi, client, designation, setCount}) {
                     break
                     } else {
                         fetch(
-                            "http://localhost:3000/api/production/"+pi,
+                            "http://192.168.74.1:3001/api/production/"+pi,
                             {method: 'POST',
                             body: formData,
                             headers: {

@@ -11,7 +11,7 @@ function ModifyProd () {
     /* On récupère les opérateurs */
     useEffect (() => {
         fetch(
-            "http://localhost:3001/api/operator",
+            "http://192.168.74.1:3001/api/operator",
             {headers: {
                 "Accept": "*",
                 "Content-Type": "*/*",
@@ -82,7 +82,7 @@ function ModifyProd () {
         }
 
         fetch(
-            "http://localhost:3001/api/production/"+params.pi,
+            "http://192.168.74.1:3001/api/production/"+params.pi,
             {headers: {
                 "Accept": "*",
                 "Content-Type": "*/*",
@@ -130,7 +130,7 @@ function ModifyProd () {
                         break
                     } else {
                     fetch(
-                        "http://localhost:3000/api/production/"+params.pi+"/"+params._id,
+                        "http://192.168.74.1:3001/api/production/"+params.pi+"/"+params._id,
                         {method: 'PUT',
                         body: formData,
                         headers: {

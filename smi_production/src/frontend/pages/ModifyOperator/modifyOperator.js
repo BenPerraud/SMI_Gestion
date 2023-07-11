@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 function ModifyOperator () {
     const [operator, setOperator] = useState([])
     const params = useParams()
-    const urlFetch = ["http://localhost:3001/api/operator/", params.id].join("")
+    const urlFetch = ["http://192.168.74.1:3001/api/operator/", params.id].join("")
     const navigate = useNavigate()
 
     useEffect (() => {

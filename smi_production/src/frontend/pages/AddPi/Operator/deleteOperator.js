@@ -2,7 +2,7 @@ function DeleteOperator (x, {formState, setFormState}) {
     const id = x._id
 
     fetch(
-        "http://localhost:3001/api/operator/"+id,
+        "http://192.168.74.1:3001/api/operator/"+id,
         {method: "DELETE",
         headers: {
             "Accept": "*",

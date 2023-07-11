@@ -12,7 +12,7 @@ function AddPi () {
                 alert("Un des champs du questionnaire n'est pas rempli")
                 break
             } else {
-                fetch("http://localhost:3001/api/production",
+                fetch("http://192.168.74.1:3001/api/production",
                 {method: 'POST', 
                 body: formData,
                 headers: {

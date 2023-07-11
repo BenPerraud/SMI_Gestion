@@ -13,7 +13,7 @@ function ProdMonitoring () {
         const pi = formData.get("pi")
 
         fetch(
-            "http://localhost:3001/api/production/"+pi,
+            "http://192.168.74.1:3001/api/production/"+pi,
             {headers: {
                 "Accept": "*",
                 "Content-Type": "*/*",

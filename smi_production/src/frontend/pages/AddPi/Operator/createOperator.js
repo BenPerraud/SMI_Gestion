@@ -11,7 +11,7 @@ function CreateOperator ({formState, setFormState}) {
                 alert("Veuillez renseigner le prénom")
                 } else {
                     fetch(
-                        "http://localhost:3001/api/operator",
+                        "http://192.168.74.1:3001/api/operator",
                         {method: form.method,
                         body: formData,
                         headers: {
