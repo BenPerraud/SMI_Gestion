@@ -15,8 +15,6 @@ function CreateOperator ({formState, setFormState}) {
                         {method: form.method,
                         body: formData,
                         headers: {
-                            "Accept": "*",
-                            "Content-Type": "*/*",
                             "Origin": "*",
                             }})
                         .then(res => res.json())
