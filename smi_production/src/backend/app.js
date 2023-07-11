@@ -1,7 +1,9 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const { MongoClient, ServerApiVersion } = require('mongodb')
+const csp = require('express-csp-header')
 require("dotenv").config()
+
 
 
 /* ----------------------------------------------------------------------------------------------------------------------------------- */
@@ -46,6 +48,12 @@ const operatorRouter = require("./routes/operator")
 const productionRouter = require("./routes/production")
 
 app.use(express.json())
+app.use(csp({
+  policies: {
+      'default-src': [csp.NONE],
+      'img-src': [csp.SELF],
+  }
+}))
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', 'http://192.168.74.1:3000')
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Content-Length, Authorization')
