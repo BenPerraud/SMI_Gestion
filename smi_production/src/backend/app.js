@@ -51,6 +51,7 @@ app.use(express.json())
 app.use(expressCspHeader({
   directives: {
       'default-src': [NONE],
+      'img-src': [SELF]
   }
 }))
 app.use((req, res, next) => {
