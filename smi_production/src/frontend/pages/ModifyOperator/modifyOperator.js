@@ -5,11 +5,17 @@ import { useEffect, useState } from "react"
 function ModifyOperator () {
     const [operator, setOperator] = useState([])
     const params = useParams()
-    const urlFetch = ["http://localhost:3000/api/operator/", params.id].join("")
+    const urlFetch = ["http://localhost:3001/api/operator/", params.id].join("")
     const navigate = useNavigate()
 
     useEffect (() => {
-        fetch(urlFetch)
+        fetch(
+            urlFetch,
+            {headers: {
+                "Accept": "*",
+                "Content-Type": "*/*",
+                "Origin": "*",
+            }})
             .then(res => res.json())
             .then(operator => setOperator(operator))
             .catch(error => alert("Erreur : " + error))

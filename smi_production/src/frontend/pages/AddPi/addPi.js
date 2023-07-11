@@ -12,7 +12,14 @@ function AddPi () {
                 alert("Un des champs du questionnaire n'est pas rempli")
                 break
             } else {
-                fetch("http://localhost:3000/api/production",{method: 'POST', body: formData})
+                fetch("http://localhost:3001/api/production",
+                {method: 'POST', 
+                body: formData,
+                headers: {
+                    "Accept": "*",
+                    "Content-Type": "*/*",
+                    "Origin": "*",
+                    }})
                     .then(res => res.json())
                     .then(res => alert(res))
                     .catch(error => alert("Erreur : " + error))

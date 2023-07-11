@@ -12,7 +12,13 @@ function ProdMonitoring () {
         const formData = new FormData(form)
         const pi = formData.get("pi")
 
-        fetch("http://localhost:3000/api/production/"+pi)
+        fetch(
+            "http://localhost:3001/api/production/"+pi,
+            {headers: {
+                "Accept": "*",
+                "Content-Type": "*/*",
+                "Origin": "*",
+            }})
             .then(res => res.json())
             .then(datas => {
                 if (datas === null) {

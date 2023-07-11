@@ -106,7 +106,13 @@ function TrsGlobal () {
     }
 
     useEffect(() => {
-        fetch("http://localhost:3000/api/production")
+        fetch(
+            "http://localhost:3001/api/production",
+            {headers: {
+                "Accept": "*",
+                "Content-Type": "*/*",
+                "Origin": "*",
+                }})
             .then(res => res.json())
             .then(res => setTrs(formatDatas(res)))
             .catch(error => alert("Erreur : " + error))

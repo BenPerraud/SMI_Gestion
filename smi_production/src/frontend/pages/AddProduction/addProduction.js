@@ -9,7 +9,13 @@ function AddProduction ({pi, client, designation, setCount}) {
     const fullNameOperators = operators.map(operator => [operator.firstname, operator.name].join(" "))
     
     useEffect (() => {
-        fetch("http://localhost:3000/api/operator")
+        fetch(
+            "http://localhost:3001/api/operator",
+            {headers: {
+                "Accept": "*",
+                "Content-Type": "*/*",
+                "Origin": "*",
+            }})
             .then(res => res.json())
             .then(datas => setOperators(datas))
             .catch(error => alert("Erreur : " + error))

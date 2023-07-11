@@ -10,7 +10,13 @@ function ModifyProd () {
 
     /* On récupère les opérateurs */
     useEffect (() => {
-        fetch("http://localhost:3000/api/operator")
+        fetch(
+            "http://localhost:3001/api/operator",
+            {headers: {
+                "Accept": "*",
+                "Content-Type": "*/*",
+                "Origin": "*",
+            }})
             .then(res => res.json())
             .then(datas => setOperators(datas))
             .catch(error => alert("Erreur : " + error))

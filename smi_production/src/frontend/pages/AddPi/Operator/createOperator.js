@@ -10,7 +10,15 @@ function CreateOperator ({formState, setFormState}) {
             } else if (formData.get("firstname") === "") {
                 alert("Veuillez renseigner le prénom")
                 } else {
-                    fetch("http://localhost:3000/api/operator", {method: form.method, body: formData})
+                    fetch(
+                        "http://localhost:3001/api/operator",
+                        {method: form.method,
+                        body: formData,
+                        headers: {
+                            "Accept": "*",
+                            "Content-Type": "*/*",
+                            "Origin": "*",
+                            }})
                         .then(res => res.json())
                         .then(res => alert(res))
                         .then(() => setFormState(formState+1))

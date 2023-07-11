@@ -102,7 +102,13 @@ function Analyse () {
         const formData = new FormData(form)
         const piInput = formData.get("PI")
 
-        fetch("http://192.168.74.1:3000/api/production/"+piInput)
+        fetch(
+            "http://192.168.74.1:3001/api/production/"+piInput, 
+            {headers: {
+                "Accept": "*",
+                "Content-Type": "*/*",
+                "Origin": "*",
+            }})
             .then(res => res.json())
             .then(res => formatDatas(res))
             .catch(error => alert( error ))
