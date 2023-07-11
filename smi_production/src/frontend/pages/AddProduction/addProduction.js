@@ -60,7 +60,7 @@ function AddProduction ({pi, client, designation, setCount}) {
                         "Origin": "*",
                     }})
                     .then(res => res.json())
-                    .then(res => alert(res+pi+"\nClient : "+client+"\nDésignation : "+designation+"\nOpérateur/trice : "+operator+"\nQte Produite : "+formData.get("quantityProd")+"\nQte rebut : "+formData.get("quantityWaste")+"\nTemps de production : "+h+" heures "+m+" min\nCommentaires : "+formData.get("comments")))
+                    .then(res => alert(res+pi+" \nClient : "+client+"\nDésignation : "+designation+"\nOpérateur/trice : "+operator+"\nQte Produite : "+formData.get("quantityProd")+"\nQte rebut : "+formData.get("quantityWaste")+"\nTemps de production : "+h+" heures "+m+" min\nCommentaires : "+formData.get("comments")))
                     .catch(error => alert("Erreur : " + error))
                 form.reset()
                 setCount(0)
