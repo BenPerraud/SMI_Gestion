@@ -46,6 +46,8 @@ function AddProduction ({pi, client, designation, setCount}) {
         formData.append("prodTime", totTimeProd)
         formData.append("operator", operator)
 
+        console.log(formData)
+
         for (let value of formData.values()) {
             if (h === 0 || m === 0) {
                 alert("Les heures ou les minutes ne sont pas renseignées, veuillez recommencer")
