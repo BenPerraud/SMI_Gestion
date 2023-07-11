@@ -13,6 +13,7 @@ const normalizePort = val => {
   return false
 };
 const port = normalizePort(process.env.PORT || '3000')
+console.log(process.env.PORT)
 app.set('port', port)
 
 const errorHandler = error => {
@@ -36,6 +37,7 @@ const errorHandler = error => {
 }
 
 const server = http.createServer(app)
+console.log(server)
 
 server.on('error', errorHandler)
 server.on('listening', () => {
