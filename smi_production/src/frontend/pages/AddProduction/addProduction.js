@@ -59,7 +59,15 @@ function AddProduction ({pi, client, designation, setCount}) {
                         alert("Un(e) opérateur/trice a été renseigné au moins deux fois, veuillez recommencer.")
                     break
                     } else {
-                        fetch("http://localhost:3000/api/production/"+pi, {method: 'POST', body: formData})
+                        fetch(
+                            "http://localhost:3000/api/production/"+pi,
+                            {method: 'POST',
+                            body: formData,
+                            headers: {
+                                "Accept": "*",
+                                "Content-Type": "*/*",
+                                "Origin": "*",
+                            }})
                             .then(res => res.json())
                             .then(res => alert(res+pi))
                             .catch(error => alert("Erreur : " + error))

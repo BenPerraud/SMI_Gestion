@@ -19,7 +19,7 @@ function AddPi () {
                     "Accept": "*",
                     "Content-Type": "*/*",
                     "Origin": "*",
-                    }})
+                }})
                     .then(res => res.json())
                     .then(res => alert(res))
                     .catch(error => alert("Erreur : " + error))

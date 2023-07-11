@@ -81,7 +81,13 @@ function ModifyProd () {
             return newProd
         }
 
-        fetch("http://localhost:3000/api/production/"+params.pi)
+        fetch(
+            "http://localhost:3001/api/production/"+params.pi,
+            {headers: {
+                "Accept": "*",
+                "Content-Type": "*/*",
+                "Origin": "*",
+            }})
             .then(res => res.json())
             .then(res => setProduction(filterProd(res)))
             .catch(error => alert("Erreur : " + error))
@@ -123,7 +129,15 @@ function ModifyProd () {
                         alert("Un(e) opérateur/trice a été renseigné au moins deux fois, veuillez recommencer.")
                         break
                     } else {
-                    fetch("http://localhost:3000/api/production/"+params.pi+"/"+params._id, {method: 'PUT', body: formData})
+                    fetch(
+                        "http://localhost:3000/api/production/"+params.pi+"/"+params._id,
+                        {method: 'PUT',
+                        body: formData,
+                        headers: {
+                            "Accept": "*",
+                            "Content-Type": "*/*",
+                            "Origin": "*",
+                        }})
                         .then(res => res.json())
                         .then(res => alert(res+params.pi))
                         .catch(error => alert("Erreur : " + error))

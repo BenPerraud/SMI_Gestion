@@ -31,7 +31,15 @@ function ModifyOperator () {
             } else if (formData.get("firstname") === "") {
                 alert("Veuillez renseigner le prénom")
                 } else {
-                    fetch(urlFetch, {method: "PUT", body: formData})
+                    fetch(
+                        urlFetch,
+                        {method: "PUT",
+                        body: formData,
+                        headers: {
+                            "Accept": "*",
+                            "Content-Type": "*/*",
+                            "Origin": "*",
+                        }})
                         .then(res => res.json())
                         .then(res => alert(res))
                         .catch(error => alert("Erreur : " + error))

@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const { MongoClient, ServerApiVersion } = require('mongodb')
+const helmet = require("helmet")
 require("dotenv").config()
 
 
@@ -47,6 +48,7 @@ const operatorRouter = require("./routes/operator")
 const productionRouter = require("./routes/production")
 
 app.use(express.json())
+app.use(helmet())
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content, Accept, Content-Type, Content-Length, Authorization')
