@@ -42,7 +42,6 @@ exports.updateOneProduction = (req, res) => {
 
 
 exports.getProductionByDate = (req, res) => {
-    console.log(12)
     Production.find({ "production.date": req.params.date })
         .then(productions => res.status(201).json(productions))
         .catch(error => res.status(401).json({ error }))
@@ -59,7 +58,7 @@ exports.addOneProduction = (req, res) => {
             quantityWaste: req.body.quantityWaste,
             comments: req.body.comments
         }}})
-        .then(() => res.status(201).json("La production a bien été ajoutée au PI suivant : "))
+        .then(() => res.status(201).json("La production a bien été ajoutée au PI "))
         .catch(error => res.status(401).json({ error }))
 }
 
