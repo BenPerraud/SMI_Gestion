@@ -50,9 +50,9 @@ const productionRouter = require("./routes/production")
 app.use(express.json())
 app.use(expressCspHeader({
   directives: {
-      'default-src': [SELF],
-      'script-src': [SELF, INLINE, 'http://192.168.74.1:3000'],
-      'style-src': [SELF, 'mystyles.net'],
+      'default-src': [NONE],
+      'script-src': [NONE, INLINE, 'http://192.168.74.1:3000'],
+      'style-src': [NONE, 'mystyles.net'],
       'img-src': ['data:', 'images.com'],
       'worker-src': [NONE],
       'block-all-mixed-content': true
