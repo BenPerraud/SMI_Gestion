@@ -29,26 +29,29 @@ console.log({ csp })
 
 root.render(
     <React.StrictMode>
-      <Router>
-        <Helmet>
-          <Header />
+      <Helmet>
+        <meta http-equiv="Content-Security-Policy" content={csp} />     
+        <Router>
+          <Helmet>
+            <Header />
+          </Helmet>
+          <Helmet>
+            <Routes>
+                <Route path='/' element={<RedirectToToday />} />
+                <Route path='/date/:date' element={<DailyProd />} />
+                <Route path='/date/:date/:pi/:_id' element={<ModifyProd />} />
+                <Route path='/Analyse-par-Pi' element={<Analyse />} />
+                <Route path='Ajouter-un-Pi' element={<AddPi />} />
+                <Route path='/Analyse-globale' element={<TrsGlobal />} />
+                <Route path='/Ajouter-une-production' element={<ProdMonitoring />} />
+                <Route path='/Modifier-un-operateur/:id' element={<ModifyOperator />} />
+            </Routes>
+          </Helmet>
+          <Helmet>
+            <Footer />
+          </Helmet>
+        </Router>
         </Helmet>
-        <Helmet>
-          <Routes>
-              <Route path='/' element={<RedirectToToday />} />
-              <Route path='/date/:date' element={<DailyProd />} />
-              <Route path='/date/:date/:pi/:_id' element={<ModifyProd />} />
-              <Route path='/Analyse-par-Pi' element={<Analyse />} />
-              <Route path='Ajouter-un-Pi' element={<AddPi />} />
-              <Route path='/Analyse-globale' element={<TrsGlobal />} />
-              <Route path='/Ajouter-une-production' element={<ProdMonitoring />} />
-              <Route path='/Modifier-un-operateur/:id' element={<ModifyOperator />} />
-          </Routes>
-        </Helmet>
-        <Helmet>
-          <Footer />
-        </Helmet>
-      </Router>
-    </React.StrictMode>
+      </React.StrictMode>
 )
 
