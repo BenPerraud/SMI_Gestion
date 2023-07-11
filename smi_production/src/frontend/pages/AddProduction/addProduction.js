@@ -45,34 +45,28 @@ function AddProduction ({pi, client, designation, setCount}) {
         formData.append("date", date)
         formData.append("prodTime", totTimeProd)
         formData.append("operator", operator)
-
-        for (const value of formData.values()) {
-            console.log(formData)
-            console.log(value)
-            if (h === 0 || m === 0 || value === "") {
-                alert("Un des champs du questionnaire n'est pas rempli, veuillez recommencer")
-                break
-            } else { 
-                if( operator.length > new Set(operator).size) {
-                    alert("Un(e) opérateur/trice a été renseigné au moins deux fois, veuillez recommencer.")
-                break
-                } else {
-                    fetch(
-                        "http://192.168.74.1:3001/api/production/"+pi,
-                        {method: 'POST',
-                        body: formData,
-                        headers: {
-                            "Origin": "*",
-                        }})
-                        .then(res => res.json())
-                        .then(res => alert(res+pi))
-                        .catch(error => alert("Erreur : " + error))
-                    form.reset()
-                    setCount(0)
-                    break
-                }
+        
+        if (h === 0 || m === 0 || formData.quantityProd === "" || formData.quantityWaste === "") {
+            alert("Un des champs du questionnaire n'est pas rempli, veuillez recommencer")
+        } else { 
+            if( operator.length > new Set(operator).size) {
+                alert("Un(e) opérateur/trice a été renseigné au moins deux fois, veuillez recommencer.")
+            } else {
+                fetch(
+                    "http://192.168.74.1:3001/api/production/"+pi,
+                    {method: 'POST',
+                    body: formData,
+                    headers: {
+                        "Origin": "*",
+                    }})
+                    .then(res => res.json())
+                    .then(res => alert(res+pi))
+                    .catch(error => alert("Erreur : " + error))
+                form.reset()
+                setCount(0)
             }
         }
+        
     }
 
     return (
