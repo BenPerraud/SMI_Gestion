@@ -13,7 +13,6 @@ const normalizePort = val => {
   return false
 };
 const port = normalizePort(process.env.PORT || '3000')
-console.log(process.env.PORT)
 app.set('port', port)
 
 const errorHandler = error => {
@@ -37,16 +36,13 @@ const errorHandler = error => {
 }
 
 const server = http.createServer(app)
-console.log(server)
 
 server.on('error', errorHandler)
 server.on('listening', () => {
   const address = server.address()
-  console.log(address)
   const bind = typeof address === 'string' ? 'pipe ' + address : 'port ' + port
   console.log('Listening on ' + bind)
 })
+ 
 
-const hostname = '192.168.74.1' 
-
-server.listen(port, hostname)
+server.listen(port)
