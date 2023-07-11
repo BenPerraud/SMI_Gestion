@@ -34,8 +34,6 @@ function ModifyOperator () {
                         {method: "PUT",
                         body: formData,
                         headers: {
-                            "Accept": "*",
-                            "Content-Type": "*/*",
                             "Origin": "*",
                         }})
                         .then(res => res.json())
