@@ -12,13 +12,22 @@ import Footer from "../src/frontend/footer/index"
 import AddPi from './frontend/pages/AddPi/addPi'
 import ModifyProd from './frontend/pages/ModifyProd/modifyProd'
 import TrsGlobal from './frontend/pages/TrsGlobal'
-import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { Helmet } from 'react-helmet-async';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
+const csp = `
+  default-src 'self';
+  script-src 'self' 'unsafe-inline';
+  style-src 'self' 'unsafe-inline';
+  img-src 'self' data:;
+  font-src 'self' data:;
+`
+
+console.log({ csp })
+
 root.render(
-  <HelmetProvider>
     <React.StrictMode>
       <Router>
         <Helmet>
@@ -41,5 +50,5 @@ root.render(
         </Helmet>
       </Router>
     </React.StrictMode>
-  </HelmetProvider>
 )
+
