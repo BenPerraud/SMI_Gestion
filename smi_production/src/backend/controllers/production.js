@@ -44,7 +44,8 @@ exports.updateOneProduction = (req, res) => {
 exports.getProductionByDate = (req, res) => {
     console.log(12)
     Production.find({ "production.date": req.params.date })
-        .then(productions => res.status(201).json(productions))
+        .then(productions => res.status(201).json({ message: "Bien le bonjour"}))
+        /*.then(productions => res.status(201).json(productions))*/
         .catch(error => res.status(401).json({ error }))
 }
 
