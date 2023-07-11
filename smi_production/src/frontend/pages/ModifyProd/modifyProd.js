@@ -83,8 +83,6 @@ function ModifyProd () {
             "http://192.168.74.1:3001/api/production/"+params.pi,
             {   method: "PUT",
                 headers: {
-                "Accept": "*",
-                "Content-Type": "*/*",
                 "Origin": "*",
             }})
             .then(res => res.json())
