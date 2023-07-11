@@ -16,8 +16,6 @@ function AddPi () {
                 {method: 'POST', 
                 body: formData,
                 headers: {
-                    "Accept": "*",
-                    "Content-Type": "*/*",
                     "Origin": "*",
                 }})
                     .then(res => res.json())
