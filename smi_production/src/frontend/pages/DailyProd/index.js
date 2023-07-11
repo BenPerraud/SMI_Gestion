@@ -61,7 +61,9 @@ function DailyProd () {
         fetch(
             "http://192.168.74.1:3001/api/production/date/"+dateURL,
             {headers: {
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                "Accept": "*",
+                "Content-Type": "*/*",
             }})
             .then(res => res.json())
             .then(res => setProductions(createNewObjectProd(createDayProd(res, reqDate))))
