@@ -12,25 +12,34 @@ import Footer from "../src/frontend/footer/index"
 import AddPi from './frontend/pages/AddPi/addPi'
 import ModifyProd from './frontend/pages/ModifyProd/modifyProd'
 import TrsGlobal from './frontend/pages/TrsGlobal'
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
 root.render(
-  <React.StrictMode>
-    <Router>
-      <Header />
-      <Routes>
-          <Route path='/' element={<RedirectToToday />} />
-          <Route path='/date/:date' element={<DailyProd />} />
-          <Route path='/date/:date/:pi/:_id' element={<ModifyProd />} />
-          <Route path='/Analyse-par-Pi' element={<Analyse />} />
-          <Route path='Ajouter-un-Pi' element={<AddPi />} />
-          <Route path='/Analyse-globale' element={<TrsGlobal />} />
-          <Route path='/Ajouter-une-production' element={<ProdMonitoring />} />
-          <Route path='/Modifier-un-operateur/:id' element={<ModifyOperator />} />
-      </Routes>
-      <Footer />
-    </Router>
-  </React.StrictMode>
+  <HelmetProvider>
+    <React.StrictMode>
+      <Router>
+        <Helmet>
+          <Header />
+        </Helmet>
+        <Helmet>
+          <Routes>
+              <Route path='/' element={<RedirectToToday />} />
+              <Route path='/date/:date' element={<DailyProd />} />
+              <Route path='/date/:date/:pi/:_id' element={<ModifyProd />} />
+              <Route path='/Analyse-par-Pi' element={<Analyse />} />
+              <Route path='Ajouter-un-Pi' element={<AddPi />} />
+              <Route path='/Analyse-globale' element={<TrsGlobal />} />
+              <Route path='/Ajouter-une-production' element={<ProdMonitoring />} />
+              <Route path='/Modifier-un-operateur/:id' element={<ModifyOperator />} />
+          </Routes>
+        </Helmet>
+        <Helmet>
+          <Footer />
+        </Helmet>
+      </Router>
+    </React.StrictMode>
+  </HelmetProvider>
 )
