@@ -45,6 +45,7 @@ function AddProduction ({pi, client, designation, setCount}) {
         formData.append("date", date)
         formData.append("prodTime", totTimeProd)
         formData.append("operator", operator)
+        console.log(formData.quantityProd)
         
         if (h === 0 || m === 0 || formData.quantityProd === "" || formData.quantityWaste === "") {
             alert("Un des champs du questionnaire n'est pas rempli, veuillez recommencer")
