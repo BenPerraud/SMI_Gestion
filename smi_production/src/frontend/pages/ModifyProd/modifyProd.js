@@ -81,7 +81,7 @@ function ModifyProd () {
 
         fetch(
             "http://192.168.74.1:3001/api/production/"+params.pi,
-            {   method: "PUT",
+            {
                 headers: {
                 "Origin": "*",
             }})
@@ -131,8 +131,6 @@ function ModifyProd () {
                         {method: 'PUT',
                         body: formData,
                         headers: {
-                            "Accept": "*",
-                            "Content-Type": "*/*",
                             "Origin": "*",
                         }})
                         .then(res => res.json())
