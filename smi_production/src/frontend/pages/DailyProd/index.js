@@ -59,12 +59,15 @@ function DailyProd () {
     useEffect(() => {
         const reqDate = parseInt(dateURL)
         fetch(
-            "http://192.168.74.1:3001/api/production/date/"+dateURL,
-            {headers: {
-                'Access-Control-Allow-Origin': '*',
-                "Accept": "*",
-                "Content-Type": "*/*",
-            }})
+            "http://192.168.74.1:3001/api/production/date/"+dateURL, 
+            {
+                method: "GET",
+                headers: {
+                    "Accept": "*",
+                    "Content-Type": "*/*",
+                    "Access-Control-Allow-Origin": "*",
+                    }
+            })
             .then(res => res.json())
             .then(res => setProductions(createNewObjectProd(createDayProd(res, reqDate))))
             .catch(error => alert("Erreur : " + error))
