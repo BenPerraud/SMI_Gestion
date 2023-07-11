@@ -81,7 +81,8 @@ function ModifyProd () {
 
         fetch(
             "http://192.168.74.1:3001/api/production/"+params.pi,
-            {headers: {
+            {   method: "PUT",
+                headers: {
                 "Accept": "*",
                 "Content-Type": "*/*",
                 "Origin": "*",
