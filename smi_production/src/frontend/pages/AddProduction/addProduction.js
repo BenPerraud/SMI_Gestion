@@ -47,8 +47,8 @@ function AddProduction ({pi, client, designation, setCount}) {
         formData.append("operator", operator)
 
         for (let value of formData.values()) {
+            console.log(value)
             if (h === 0 || m === 0 || value === "") {
-                console.log(value)
                 alert("Un des champs du questionnaire n'est pas rempli, veuillez recommencer")
                 break
             } else { 
