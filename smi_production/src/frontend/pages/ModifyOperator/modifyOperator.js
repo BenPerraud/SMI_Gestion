@@ -12,8 +12,6 @@ function ModifyOperator () {
         fetch(
             urlFetch,
             {headers: {
-                "Accept": "*",
-                "Content-Type": "*/*",
                 "Origin": "*",
             }})
             .then(res => res.json())
