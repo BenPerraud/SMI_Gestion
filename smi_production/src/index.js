@@ -12,46 +12,26 @@ import Footer from "../src/frontend/footer/index"
 import AddPi from './frontend/pages/AddPi/addPi'
 import ModifyProd from './frontend/pages/ModifyProd/modifyProd'
 import TrsGlobal from './frontend/pages/TrsGlobal'
-import { Helmet } from 'react-helmet-async';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
-const csp = `
-  default-src 'self';
-  script-src 'self' 'unsafe-inline';
-  style-src 'self' 'unsafe-inline';
-  img-src 'self' data:;
-  font-src 'self' data:;
-`
-
-console.log({ csp })
-
 root.render(
-    <React.StrictMode>
-      <Helmet>
-        <meta http-equiv="Content-Security-Policy" content={csp} />     
-        <Router>
-          <Helmet>
-            <Header />
-          </Helmet>
-          <Helmet>
-            <Routes>
-                <Route path='/' element={<RedirectToToday />} />
-                <Route path='/date/:date' element={<DailyProd />} />
-                <Route path='/date/:date/:pi/:_id' element={<ModifyProd />} />
-                <Route path='/Analyse-par-Pi' element={<Analyse />} />
-                <Route path='Ajouter-un-Pi' element={<AddPi />} />
-                <Route path='/Analyse-globale' element={<TrsGlobal />} />
-                <Route path='/Ajouter-une-production' element={<ProdMonitoring />} />
-                <Route path='/Modifier-un-operateur/:id' element={<ModifyOperator />} />
-            </Routes>
-          </Helmet>
-          <Helmet>
-            <Footer />
-          </Helmet>
-        </Router>
-        </Helmet>
-      </React.StrictMode>
+  <React.StrictMode>
+    <Router >
+    <Header />
+      <Routes>
+          <Route path='/' element={<RedirectToToday />} />
+          <Route path='/date/:date' element={<DailyProd />} />
+          <Route path='/date/:date/:pi/:_id' element={<ModifyProd />} />
+          <Route path='/Analyse-par-Pi' element={<Analyse />} />
+          <Route path='Ajouter-un-Pi' element={<AddPi />} />
+          <Route path='/Analyse-globale' element={<TrsGlobal />} />
+          <Route path='/Ajouter-une-production' element={<ProdMonitoring />} />
+          <Route path='/Modifier-un-operateur/:id' element={<ModifyOperator />} />
+      </Routes>
+      <Footer />
+    </Router>
+  </React.StrictMode>
 )
 
