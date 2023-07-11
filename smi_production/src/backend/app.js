@@ -1,7 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const { MongoClient, ServerApiVersion } = require('mongodb')
-const { expressCspHeader, INLINE, NONE, SELF } = require('express-csp-header')
 require("dotenv").config()
 
 
