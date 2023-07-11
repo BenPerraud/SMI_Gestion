@@ -44,5 +44,5 @@ server.on('listening', () => {
   console.log('Listening on ' + bind)
 })
  
-
-server.listen(port)
+const hostname = '192.168.74.1'
+server.listen(port, hostname)
