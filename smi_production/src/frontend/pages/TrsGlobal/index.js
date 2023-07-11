@@ -11,14 +11,18 @@ function TrsGlobal () {
     const [trsCopy, setTrsCopy] = useState ({})
 
     function getDate (e) {
-        e.preventDefault()
+        try{
+            e.preventDefault()
 
-        const firstDateInput = convertDateFormToTime(document.getElementById("dateBegin").value)
-        const lastDateInput = convertDateFormToTime(document.getElementById("dateEnd").value)
-        
-        const result = trs.filter(element => element.date >= firstDateInput && element.date <= lastDateInput)
-        formatTrendTot(result)
-        setTrs(result)
+            const firstDateInput = convertDateFormToTime(document.getElementById("dateBegin").value)
+            const lastDateInput = convertDateFormToTime(document.getElementById("dateEnd").value)
+            
+            const result = trs.filter(element => element.date >= firstDateInput && element.date <= lastDateInput)
+            formatTrendTot(result)
+            setTrs(result)
+        } catch {
+            alert("Les dates renseignées ne correspondent pas")
+        }
     }
 
     function reinitiate () {
