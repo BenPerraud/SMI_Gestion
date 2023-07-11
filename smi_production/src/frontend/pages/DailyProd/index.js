@@ -62,7 +62,7 @@ function DailyProd () {
             {headers: {
                 "Accept": "*",
                 "Content-Type": "*/*",
-                "access-control-allow-origin": "*",
+                'Access-Control-Allow-Origin': '*'
                 },
             })
             .then(res => res.json())
