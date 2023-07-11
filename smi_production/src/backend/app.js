@@ -1,7 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const { MongoClient, ServerApiVersion } = require('mongodb')
-const csp = require('express-csp-header')
+const { expressCspHeader, INLINE, NONE, SELF } = require('express-csp-header')
 require("dotenv").config()
 
 
@@ -48,10 +48,14 @@ const operatorRouter = require("./routes/operator")
 const productionRouter = require("./routes/production")
 
 app.use(express.json())
-app.use(csp({
-  policies: {
-      'default-src': [csp.NONE],
-      'img-src': [csp.SELF],
+app.use(expressCspHeader({
+  directives: {
+      'default-src': [SELF],
+      'script-src': [SELF, INLINE, 'http://192.168.74.1:3000'],
+      'style-src': [SELF, 'mystyles.net'],
+      'img-src': ['data:', 'images.com'],
+      'worker-src': [NONE],
+      'block-all-mixed-content': true
   }
 }))
 app.use((req, res, next) => {
