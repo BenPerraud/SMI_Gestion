@@ -1,4 +1,6 @@
 import OpeMonitoring from "./Operator/opeMonitoring"
+import PiMonitoring from "./PiMonitoring"
+import { useState, useEffect} from "react"
 
 function AddPi () {
     function createPi (e) {
@@ -26,6 +28,38 @@ function AddPi () {
             }
         }
     }
+    
+    const [allPi, setAllPi] = useState([])
+    const [count, setCount] = useState(0)
+
+    function formatDatas (x) {
+        const newArray = []
+        for (let i of x) {
+            const newObject = {
+            pi: i.pi,
+            client: i.client,
+            designation: i.designation,
+            qteTheorical: i.quantityTheorical
+            }
+            newArray.push(newObject)
+        }
+        setAllPi(newArray)
+    }
+
+    useEffect(() => {
+        fetch(
+            "http://192.168.74.1:3001/api/production",
+            {headers: {
+                "Accept": "*",
+                "Content-Type": "*/*",
+                "Origin": "*",
+                }})
+            .then(res => res.json())
+            .then(res => formatDatas(res))
+            .catch(error => alert("Erreur : " + error))
+        setCount(count+1)
+    }, [count])
+    
 
     return (
         <div className="flexColumnGeneral">
@@ -40,6 +74,7 @@ function AddPi () {
                 </form>
             </div>
             <OpeMonitoring />
+            <PiMonitoring allPi={allPi}/>
         </div>
     )
 }
