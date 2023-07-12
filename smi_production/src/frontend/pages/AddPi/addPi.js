@@ -45,7 +45,7 @@ function AddPi () {
             newArray.push(newObject)
             newArrayPi.push(i.pi)
         }
-        newArray.sort((a, b) => a - b)
+        newArray.sort((a, b) => a.pi - b.pi)
         setAllPiDesi(newArray)
         setAllPi(newArrayPi)
     }
