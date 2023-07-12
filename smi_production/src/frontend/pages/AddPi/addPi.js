@@ -3,16 +3,21 @@ import PiMonitoring from "./PiMonitoring"
 import { useState, useEffect} from "react"
 
 function AddPi () {
+    const [allPiDesi, setAllPiDesi] = useState([])
+    const [allPi, setAllPi] = useState([])
+
     function createPi (e) {
         e.preventDefault()
 
         const form = e.target
         const formData = new FormData(form)
-
-        for (let value of formData.values()) {
-            if (value === "") {
-                alert("Un des champs du questionnaire n'est pas rempli")
-                break
+        
+        if (formData.get("pi") === "" || formData.get("client") === "" || formData.get("designation") === "" || formData.get("quantityTheorical") === "") {
+            alert("Un des champs du questionnaire n'est pas rempli")
+        } else {
+            if (allPi.includes(formData.get("pi"))) {
+                alert("Le PI renseigné existe déjà dans la base de données")
+                form.reset()
             } else {
                 fetch("http://192.168.74.1:3001/api/production",
                 {method: 'POST', 
@@ -24,13 +29,9 @@ function AddPi () {
                     .then(res => alert(res))
                     .catch(error => alert("Erreur : " + error))
                 form.reset()
-                break
             }
         }
     }
-    
-    const [allPiDesi, setAllPiDesi] = useState([])
-    const [allPi, setAllPi] = useState([])
 
     function formatDatas (x) {
         const newArray = []
