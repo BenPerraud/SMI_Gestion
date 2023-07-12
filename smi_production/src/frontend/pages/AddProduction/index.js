@@ -38,7 +38,7 @@ function ProdMonitoring () {
             <div className={count === 1 ? "closed" : "rowGap20px"}>
                 <h1 className="titleH1">Etape 1 : rechercher le PI</h1>
                 <form className="form" name="createOperatorForm" onSubmit={getOneProduction}>
-                    <label>Indiquer le PI : <input className="formElement" type="text" name="pi" id="pi" /></label>
+                    <label>Indiquer le PI : 00<input className="formElement" type="text" name="pi" id="pi" /></label>
                     <button className="formBtn" type="submit">Rechercher</button>
                 </form>
             </div>
