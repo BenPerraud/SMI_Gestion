@@ -77,7 +77,7 @@ function AddPi () {
                 </form>
             </div>
             <OpeMonitoring />
-            <PiMonitoring allPi={allPi}/>
+            <PiMonitoring allPiDesi={allPiDesi}/>
         </div>
     )
 }
