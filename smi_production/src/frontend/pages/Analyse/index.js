@@ -142,6 +142,22 @@ function Analyse () {
                     <button className="reinitiate" onClick={reinitiate}>Réinitialiser les dates</button>
                 </div>
                 <div className="rowGap15px">
+                    <h2 className="titleH2">Cadence à l'heure (hors rebuts)</h2>
+                    <div className="lineChart">
+                        <ResponsiveContainer width="100%" height={400}>
+                            <LineChart data={productions}>
+                                <CartesianGrid stroke="#9ba9c6" strokeDasharray="3 3"/>
+                                <YAxis />
+                                <XAxis dataKey="date" tick={{fontSize: 15}} height={65} angle={-45} textAnchor="end" tickSize={12}/>
+                                <Line type="monotone" dataKey="cadenceReelle_heure" stroke="#203864" strokeWidth={2} dot={false}/>
+                                <Line type="monotone" dataKey="cadenceTheorique_heure" stroke="#882e3d" strokeWidth={2} dot={false}/>
+                                <Line type="monotone" dataKey="cadence_trend" connectNulls={true} stroke="#e52fd7" strokeWidth={2} dot={false} />
+                                <Tooltip content={<CustomTooltipCadence />} />
+                            </LineChart>
+                        </ResponsiveContainer>
+                    </div>
+                </div>
+                <div className="rowGap15px">
                     <h2 className="titleH2">Taux de rebut</h2>
                     <div className="lineChart">
                         <ResponsiveContainer width="100%" height={400}>
@@ -155,22 +171,6 @@ function Analyse () {
                                 <Line yAxisId="right" style={{display: "none"}} type="monotone" dataKey="commentaires"/>
                                 <Line yAxisId="left" type="monotone" dataKey="taux_de_rebut_trend" connectNulls={true} stroke="#e52fd7" strokeWidth={2} dot={false} />
                                 <Tooltip content={<CustomTooltipWaste />}/>
-                            </LineChart>
-                        </ResponsiveContainer>
-                    </div>
-                </div>
-                <div className="rowGap15px">
-                    <h2 className="titleH2">Cadence à l'heure (hors rebuts)</h2>
-                    <div className="lineChart">
-                        <ResponsiveContainer width="100%" height={400}>
-                            <LineChart data={productions}>
-                                <CartesianGrid stroke="#9ba9c6" strokeDasharray="3 3"/>
-                                <YAxis />
-                                <XAxis dataKey="date" tick={{fontSize: 15}} height={65} angle={-45} textAnchor="end" tickSize={12}/>
-                                <Line type="monotone" dataKey="cadenceReelle_heure" stroke="#203864" strokeWidth={2} dot={false}/>
-                                <Line type="monotone" dataKey="cadenceTheorique_heure" stroke="#882e3d" strokeWidth={2} dot={false}/>
-                                <Line type="monotone" dataKey="cadence_trend" connectNulls={true} stroke="#e52fd7" strokeWidth={2} dot={false} />
-                                <Tooltip content={<CustomTooltipCadence />} />
                             </LineChart>
                         </ResponsiveContainer>
                     </div>

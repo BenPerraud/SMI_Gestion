@@ -137,21 +137,6 @@ function TrsGlobal () {
                     <button className="reinitiate" onClick={reinitiate}>Réinitialiser les dates</button>
                 </div>
                 <div className="rowGap15px">
-                    <h2 className="titleH2">Taux de rebut global</h2>
-                    <div className="lineChart">
-                        <ResponsiveContainer width="100%" height={400}>
-                            <LineChart data={trs}>
-                                <CartesianGrid stroke="#9ba9c6" strokeDasharray="3 3"/>
-                                <XAxis dataKey="dateProd" tick={{fontSize: 15}} height={65} angle={-45} textAnchor="end" tickSize={12}/>
-                                <YAxis yAxisId="left" tickFormatter={toPercent}/>
-                                <Line yAxisId="left" type="monotone" dataKey="tauxRebutTot" stroke="#203864" strokeWidth={2} dot={false}/>
-                                <Line yAxisId="left" type="monotone" dataKey="taux_de_rebut_trend" connectNulls={true} stroke="#e52fd7" strokeWidth={2} dot={false} />
-                                <Tooltip content={<CustomTooltipWasteTot />} />
-                            </LineChart>
-                        </ResponsiveContainer>
-                    </div>
-                </div>
-                <div className="rowGap15px">
                     <h2 className="titleH2">Cadence globale par heure (hors rebuts)</h2>
                     <div className="lineChart">
                         <ResponsiveContainer width="100%" height={400}>
@@ -163,6 +148,21 @@ function TrsGlobal () {
                                 <Line yAxisId="left" type="monotone" dataKey="cadenceTheoTot" stroke="#882e3d" strokeWidth={2} dot={false}/>
                                 <Line yAxisId="left" type="monotone" dataKey="cadence_trend" connectNulls={true} stroke="#e52fd7" strokeWidth={2} dot={false}/>
                                 <Tooltip content={<CustomTooltipCadenceTot />} />
+                            </LineChart>
+                        </ResponsiveContainer>
+                    </div>
+                </div>
+                <div className="rowGap15px">
+                    <h2 className="titleH2">Taux de rebut global</h2>
+                    <div className="lineChart">
+                        <ResponsiveContainer width="100%" height={400}>
+                            <LineChart data={trs}>
+                                <CartesianGrid stroke="#9ba9c6" strokeDasharray="3 3"/>
+                                <XAxis dataKey="dateProd" tick={{fontSize: 15}} height={65} angle={-45} textAnchor="end" tickSize={12}/>
+                                <YAxis yAxisId="left" tickFormatter={toPercent}/>
+                                <Line yAxisId="left" type="monotone" dataKey="tauxRebutTot" stroke="#203864" strokeWidth={2} dot={false}/>
+                                <Line yAxisId="left" type="monotone" dataKey="taux_de_rebut_trend" connectNulls={true} stroke="#e52fd7" strokeWidth={2} dot={false} />
+                                <Tooltip content={<CustomTooltipWasteTot />} />
                             </LineChart>
                         </ResponsiveContainer>
                     </div>
