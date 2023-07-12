@@ -127,12 +127,12 @@ function Analyse () {
             <div className="rowGap20px">
                 <h1 className="titleH1">Etape 1 : renseigner le PI souhaité</h1>
                 <form className="form" name="form" method="get" encType="multipart/form-data" onSubmit={getPiForAnalyse}>
-                    <label>PI : <input className="formElement" type="text" name="PI"></input></label>
+                    <label>PI : 00<input className="formElement" type="text" name="PI"></input></label>
                     <button className="formBtn">Analyser</button>
                 </form>
             </div>
             <div className={productions.length === 0 ? "closed" : "rowGap20px"}>
-                <h1 className="titleH1">Etape 2 : Analyse du produit {prodDesignation.pi} / {prodDesignation.client} / {prodDesignation.designation}</h1>
+                <h1 className="titleH1">Etape 2 : Analyse du produit 00{prodDesignation.pi} / {prodDesignation.client} / {prodDesignation.designation}</h1>
                 <div className="formDateFlex">
                     <form className="formDate" id="formDate" onSubmit={getDate}>
                         <label>Date de début : <input className="formElement widthDate" type="date" id="dateBegin" /></label>

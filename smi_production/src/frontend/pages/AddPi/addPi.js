@@ -32,7 +32,7 @@ function AddPi () {
             <div className="rowGap20px">
                 <h1 className="titleH1">Ajouter un nouveau PI</h1>
                 <form className="form" name="form" method="post" encType="multipart/form-data" onSubmit={createPi}>
-                    <label>PI : <input className="formElement widthPi" type="text" name="pi" /></label>
+                    <label>PI : 00<input className="formElement widthPi" type="text" name="pi" /></label>
                     <label>Client : <input className="formElement widthClient" type="text" name="client" /></label>
                     <label>Désignation projet : <input className="formElement widthDesignation" type="text" name="designation" /></label>
                     <label>Quantité théorique : <input className="formElement widthProdTheo" type="text" name="quantityTheorical" /> pièces théoriques sur base 7 heures</label>
