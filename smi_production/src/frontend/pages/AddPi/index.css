@@ -4,6 +4,7 @@
     justify-content: space-between;
     flex-wrap: wrap;
     row-gap: 12px;
+    padding-top: 20px;
 }
 
 .cardsPi {

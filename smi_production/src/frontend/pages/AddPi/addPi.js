@@ -29,10 +29,12 @@ function AddPi () {
         }
     }
     
+    const [allPiDesi, setAllPiDesi] = useState([])
     const [allPi, setAllPi] = useState([])
 
     function formatDatas (x) {
         const newArray = []
+        const newArrayPi = []
         for (let i of x) {
             const newObject = {
             pi: i.pi,
@@ -41,8 +43,11 @@ function AddPi () {
             qteTheorical: i.quantityTheorical
             }
             newArray.push(newObject)
+            newArrayPi.push(i.pi)
         }
-        setAllPi(newArray)
+        newArray.sort((a, b) => a - b)
+        setAllPiDesi(newArray)
+        setAllPi(newArrayPi)
     }
 
     useEffect(() => {
