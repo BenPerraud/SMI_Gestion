@@ -1,0 +1,22 @@
+.allPi {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.cardsPi {
+    border: solid 2px #203864;
+    padding: 10px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    width: 150 px;
+}
+
+.piElement {
+    margin: 0;
+    font-size: 15px;
+    color: #203864;
+}

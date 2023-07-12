@@ -30,7 +30,6 @@ function AddPi () {
     }
     
     const [allPi, setAllPi] = useState([])
-    const [count, setCount] = useState(0)
 
     function formatDatas (x) {
         const newArray = []
@@ -57,8 +56,7 @@ function AddPi () {
             .then(res => res.json())
             .then(res => formatDatas(res))
             .catch(error => alert("Erreur : " + error))
-        setCount(count+1)
-    }, [count])
+    }, [])
     
 
     return (
