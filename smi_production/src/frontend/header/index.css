@@ -24,7 +24,7 @@
 }
 
 .navBar_link_element_current {
-    font-size: 24px;
+    font-size: 20px;
     color: #203864;
     text-decoration: underline;
     font-weight: 700;
@@ -36,5 +36,8 @@
     .SMI_Logo {
         height: 50%;
         width: auto;
+    }
+    .Navlink_logo {
+        height: min-content;
     }
   }
