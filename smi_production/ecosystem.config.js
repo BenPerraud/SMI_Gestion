@@ -2,7 +2,7 @@ module.exports = {
     apps : [
       {
           name   : "backend",
-          script : "./smi_production/src/backend/server.js",
+          script : "./src/backend/server.js",
         },
         {
           name   : "frontend",
