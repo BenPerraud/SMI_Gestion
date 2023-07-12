@@ -112,35 +112,25 @@ function ModifyProd () {
         formData.append("date", date)
         formData.append("prodTime", totTimeProd)
         formData.append("operator", operator)
-        
-        for (let value of formData.values()) {    
-            if (h === 0 || m === 0) {
-                alert("Les heures ou les minutes ne sont pas renseignées, veuillez recommencer")
-                break
+           
+        if ((h === 0 && m === 0) || formData.get("quantityProd") === "" || formData.get("quantityWaste") === "" || formData.get("operator") === "") {
+            alert("Un des champs du questionnaire n'est pas rempli, veuillez recommencer")
+        } else {
+            if( operator.length > new Set(operator).size) {
+                alert("Un(e) opérateur/trice a été renseigné au moins deux fois, veuillez recommencer.")
             } else {
-                if (value === "") {
-                    alert("Un des champs du questionnaire n'est pas rempli")
-                    break
-                } else { 
-                    if( operator.length > new Set(operator).size) {
-                        alert("Un(e) opérateur/trice a été renseigné au moins deux fois, veuillez recommencer.")
-                        break
-                    } else {
-                    fetch(
-                        "http://192.168.74.1:3001/api/production/"+params.pi+"/"+params._id,
-                        {method: 'PUT',
-                        body: formData,
-                        headers: {
-                            "Origin": "*",
-                        }})
-                        .then(res => res.json())
-                        .then(res => alert(res+params.pi))
-                        .catch(error => alert("Erreur : " + error))
-                    form.reset()
-                    navigate("/")
-                    break
-                    }
-                }
+            fetch(
+                "http://192.168.74.1:3001/api/production/"+params.pi+"/"+params._id,
+                {method: 'PUT',
+                body: formData,
+                headers: {
+                    "Origin": "*",
+                }})
+                .then(res => res.json())
+                .then(res => alert(res+params.pi))
+                .catch(error => alert("Erreur : " + error))
+            form.reset()
+            navigate("/")
             }
         }
     }
