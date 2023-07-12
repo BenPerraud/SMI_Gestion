@@ -35,7 +35,7 @@ function ProdMonitoring () {
 
     return (
         <div className="flexColumnGeneral">
-            <div className="rowGap20px">
+            <div className={count === 1 ? "closed" : "rowGap20px"}>
                 <h1 className="titleH1">Etape 1 : rechercher le PI</h1>
                 <form className="form" name="createOperatorForm" onSubmit={getOneProduction}>
                     <label>Indiquer le PI : <input className="formElement" type="text" name="pi" id="pi" /></label>
