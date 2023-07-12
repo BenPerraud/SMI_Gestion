@@ -41,4 +41,7 @@
         height: 100px;
         object-fit: contain;
     }
+    .navBar {
+        padding-bottom: 5px;
+    }
   }
