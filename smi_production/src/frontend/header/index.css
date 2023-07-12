@@ -36,6 +36,8 @@
     .SMI_Logo {
         height: 50%;
         width: auto;
+        margin-top: auto;
+        margin-bottom: auto;
     }
     .Navlink_logo {
         height: 100px;
@@ -43,6 +45,5 @@
     }
     .navBar {
         padding-bottom: 5px;
-        align-content: center;
     }
   }
