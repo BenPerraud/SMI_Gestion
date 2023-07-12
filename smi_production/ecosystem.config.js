@@ -7,6 +7,7 @@ module.exports = {
           {
             name   : "frontend",
             script : "./package.json",
+            port : "3000"
             }
     ]
   }
