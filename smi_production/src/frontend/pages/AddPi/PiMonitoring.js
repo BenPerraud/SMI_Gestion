@@ -9,7 +9,6 @@ function PiMonitoring({allPi}) {
                     <p className="piElement bold">PI : 00{elem.pi}</p>
                     <p className="piElement">Client : {elem.client}</p>
                     <p className="piElement">Désignation : {elem.designation}</p>
-                    <p className="piElement">Qte Théorique : {elem.qteTheorical} pcs</p>
                 </div>)}
             </div>
         </div>
