@@ -42,9 +42,10 @@
     .Navlink_logo {
         height: 100px;
         object-fit: contain;
+        display: flex;
+        align-items: center;
     }
     .navBar {
         padding-bottom: 5px;
-        align-items: center;
     }
   }
