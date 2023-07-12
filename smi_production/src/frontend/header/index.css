@@ -38,6 +38,7 @@
         width: auto;
     }
     .Navlink_logo {
-        height: min-content;
+        height: 100px;
+        object-fit: contain;
     }
   }
