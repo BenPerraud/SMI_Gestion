@@ -46,7 +46,7 @@ function AddProduction ({pi, client, designation, setCount}) {
         formData.append("prodTime", totTimeProd)
         formData.append("operator", operator)
         
-        if (h === 0 || m === 0 || formData.get("quantityProd") === "" || formData.get("quantityWaste") === "" || formData.get("operator") === "") {
+        if ((h === 0 && m === 0) || formData.get("quantityProd") === "" || formData.get("quantityWaste") === "" || formData.get("operator") === "") {
             alert("Un des champs du questionnaire n'est pas rempli, veuillez recommencer")
         } else { 
             if( operator.length > new Set(operator).size) {
@@ -71,7 +71,7 @@ function AddProduction ({pi, client, designation, setCount}) {
 
     return (
         <div className="rowGap20px">
-            <h1 className="titleH1">Etape 2 : ajouter une nouvelle production au PI suivant : {pi} / {client} / {designation}</h1>
+            <h1 className="titleH1">Etape 2 : ajouter une nouvelle production au PI suivant : 00{pi} / {client} / {designation}</h1>
             <form className="form" name="createOperatorForm" method="post" encType="multipart/form-data" onSubmit={postProduction}>
                 <label>Date : <input className="formElement widthDate" type="date" id="date" defaultValue={defaultDate()} /></label>
                 <label>Opérateur/trice #1 : 
