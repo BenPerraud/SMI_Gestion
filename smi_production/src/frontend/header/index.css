@@ -45,5 +45,6 @@
     }
     .navBar {
         padding-bottom: 5px;
+        align-items: center;
     }
   }
