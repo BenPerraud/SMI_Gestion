@@ -5,6 +5,7 @@ import { useState, useEffect} from "react"
 function AddPi () {
     const [allPiDesi, setAllPiDesi] = useState([])
     const [allPi, setAllPi] = useState([])
+    const [count, setCount] = useState(0)
 
     function createPi (e) {
         e.preventDefault()
@@ -28,6 +29,7 @@ function AddPi () {
                     .then(res => res.json())
                     .then(res => alert(res))
                     .catch(error => alert("Erreur : " + error))
+                setCount(count+1)
                 form.reset()
             }
         }
@@ -62,7 +64,7 @@ function AddPi () {
             .then(res => res.json())
             .then(res => formatDatas(res))
             .catch(error => alert("Erreur : " + error))
-    }, [])
+    }, [count])
     
 
     return (
