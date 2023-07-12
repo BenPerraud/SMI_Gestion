@@ -9,7 +9,7 @@ function Header () {
     const currentLocation = useLocation()
     return (
         <div className="navBar">
-            <NavLink to="/"><img src={smi_logo} alt="Logo de SMI"></img></NavLink>
+            <NavLink to="/"><img src={smi_logo} alt="Logo de SMI" className="SMI_Logo"></img></NavLink>
             <div className="navBar_link">
                 <NavLink to="/Ajouter-une-production" className={currentLocation.pathname === "/Ajouter-une-production" ? "navBar_link_element_current" : "navBar_link_element" }>Saisie journalière</NavLink>
                 <NavLink to={todayURL} className={currentLocation.pathname === todayURL ? "navBar_link_element_current" : "navBar_link_element" }>Production à la journée</NavLink>

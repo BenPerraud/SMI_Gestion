@@ -30,3 +30,11 @@
     font-weight: 700;
 
 }
+
+
+@media screen and (max-width: 1200px) {
+    .SMI_Logo {
+        height: 50%;
+        width: auto;
+    }
+  }
