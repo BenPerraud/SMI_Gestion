@@ -1,6 +1,7 @@
 import OpeMonitoring from "./Operator/opeMonitoring"
 import PiMonitoring from "./PiMonitoring"
 import { useState, useEffect} from "react"
+import { productionAPI } from "../../components/routesApi"
 
 function AddPi () {
     const [allPiDesi, setAllPiDesi] = useState([])
@@ -20,15 +21,16 @@ function AddPi () {
                 alert("Le PI renseigné existe déjà dans la base de données")
                 form.reset()
             } else {
-                fetch("http://192.168.74.1:3001/api/production",
-                {method: 'POST', 
-                body: formData,
-                headers: {
-                    "Origin": "*",
-                }})
-                    .then(res => res.json())
-                    .then(res => alert(res))
-                    .catch(error => alert("Erreur : " + error))
+                fetch(
+                    {productionAPI},
+                    {method: 'POST', 
+                    body: formData,
+                    headers: {
+                        "Origin": "*",
+                    }})
+                        .then(res => res.json())
+                        .then(res => alert(res))
+                        .catch(error => alert("Erreur : " + error))
                 setCount(count+1)
                 form.reset()
             }
@@ -55,7 +57,7 @@ function AddPi () {
 
     useEffect(() => {
         fetch(
-            "http://192.168.74.1:3001/api/production",
+            {productionAPI},
             {headers: {
                 "Accept": "*",
                 "Content-Type": "*/*",

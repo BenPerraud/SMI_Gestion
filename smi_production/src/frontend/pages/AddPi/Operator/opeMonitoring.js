@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import CardsOperator from "./cardsOperator"
 import CreateOperator from "./createOperator"
+import { operatorAPI } from "../../../components/routesApi"
 
 function OpeMonitoring () {
     const [operators, setOperators] = useState([])
@@ -8,7 +9,7 @@ function OpeMonitoring () {
     
     useEffect (() => {
         fetch(
-            "http://192.168.74.1:3001/api/operator",
+            {operatorAPI},
             {headers: {
                 "Accept": "*",
                 "Content-Type": "*/*",

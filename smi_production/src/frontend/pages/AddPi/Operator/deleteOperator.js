@@ -1,8 +1,10 @@
+import { operatorAPI } from "../../../components/routesApi"
+
 function DeleteOperator (x, {formState, setFormState}) {
     const id = x._id
 
     fetch(
-        "http://192.168.74.1:3001/api/operator/"+id,
+        {operatorAPI}+"/"+id,
         {method: "DELETE",
         headers: {
             "Origin": "*",

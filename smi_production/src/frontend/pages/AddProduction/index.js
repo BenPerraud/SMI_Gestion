@@ -1,5 +1,6 @@
 import { useState } from "react"
 import AddProduction from "./addProduction"
+import { productionAPI } from "../../components/routesApi"
 import "./index.css"
 
 function ProdMonitoring () {
@@ -13,7 +14,7 @@ function ProdMonitoring () {
         const pi = formData.get("pi")
 
         fetch(
-            "http://192.168.74.1:3001/api/production/"+pi,
+            {productionAPI}+"/"+pi,
             {headers: {
                 "Accept": "*",
                 "Content-Type": "*/*",

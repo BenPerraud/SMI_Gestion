@@ -6,6 +6,7 @@ import CustomTooltipWaste from "./tooltipWaste"
 import CustomTooltipTrs from "./tooltipTrs"
 import convertDateFormToTime from "../../components/convertDateFormtoTime"
 import formatTrend from "../../components/formatTrend"
+import { productionAPI } from "../../components/routesApi"
 
 
 function Analyse () {
@@ -31,7 +32,7 @@ function Analyse () {
     function reinitiate (e) {
         e.preventDefault()
         fetch(
-            "http://192.168.74.1:3001/api/production/"+pi, 
+            {productionAPI}+"/"+pi, 
             {headers: {
                 "Accept": "*",
                 "Content-Type": "*/*",
@@ -116,7 +117,7 @@ function Analyse () {
         setPi(piInput)
 
         fetch(
-            "http://192.168.74.1:3001/api/production/"+piInput, 
+            {productionAPI}+"/"+piInput, 
             {headers: {
                 "Accept": "*",
                 "Content-Type": "*/*",

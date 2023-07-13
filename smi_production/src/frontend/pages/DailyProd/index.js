@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 import defaultDate from "../../components/defaultDate"
 import CardsProduction from "./cardsProduction.js"
 import TrsDaily from "./trsDaily"
+import productionAPI from "./../../components/routesApi"
 
 
 function DailyProd () {
@@ -59,7 +60,7 @@ function DailyProd () {
     useEffect(() => {
         const reqDate = parseInt(dateURL)
         fetch(
-            "http://192.168.74.1:3001/api/production/date/"+dateURL, 
+            {productionAPI}+"/date/"+dateURL, 
             {
                 method: "GET",
                 headers: {

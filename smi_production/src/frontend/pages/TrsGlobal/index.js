@@ -5,6 +5,7 @@ import CustomTooltipTrsTot from "./tooltipTrsTot"
 import CustomTooltipCadenceTot from "./tooltipCadenceTot"
 import convertDateFormToTime from "../../components/convertDateFormtoTime"
 import formatTrendTot from "../../components/formatTrendTot"
+import { productionAPI } from "../../components/routesApi"
 
 function TrsGlobal () {
     const [trs, setTrs] = useState({})
@@ -110,7 +111,7 @@ function TrsGlobal () {
 
     useEffect(() => {
         fetch(
-            "http://192.168.74.1:3001/api/production",
+            {productionAPI},
             {headers: {
                 "Accept": "*",
                 "Content-Type": "*/*",

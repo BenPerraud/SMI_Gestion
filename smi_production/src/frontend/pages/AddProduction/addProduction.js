@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import defaultDate from "../../components/defaultDate"
 import "./index.css"
+import { productionAPI } from "../../components/routesApi"
+import { operatorAPI } from "../../components/routesApi"
 
 function AddProduction ({pi, client, designation, setCount}) {
     
@@ -10,7 +12,7 @@ function AddProduction ({pi, client, designation, setCount}) {
     
     useEffect (() => {
         fetch(
-            "http://192.168.74.1:3001/api/operator",
+            {operatorAPI},
             {headers: {
                 "Accept": "*",
                 "Content-Type": "*/*",
@@ -53,7 +55,7 @@ function AddProduction ({pi, client, designation, setCount}) {
                 alert("Un(e) opérateur/trice a été renseigné au moins deux fois, veuillez recommencer.")
             } else {
                 fetch(
-                    "http://192.168.74.1:3001/api/production/"+pi,
+                    {productionAPI}+"/"+pi,
                     {method: 'POST',
                     body: formData,
                     headers: {

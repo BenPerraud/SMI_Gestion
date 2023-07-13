@@ -1,3 +1,5 @@
+import { operatorAPI } from "../../../components/routesApi"
+
 function CreateOperator ({formState, setFormState}) {
     
     function postOperator (e) {
@@ -11,7 +13,7 @@ function CreateOperator ({formState, setFormState}) {
                 alert("Veuillez renseigner le prénom")
                 } else {
                     fetch(
-                        "http://192.168.74.1:3001/api/operator",
+                        {operatorAPI},
                         {method: form.method,
                         body: formData,
                         headers: {
