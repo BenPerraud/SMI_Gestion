@@ -24,7 +24,7 @@ function CardsProduction ({production}) {
         setIsOpen(!isOpen)
     }
 
-    const chevron = (isOpen ? <FontAwesomeIcon onClick={() => handleChange()} className="chevron" icon={faChevronDown} /> : <FontAwesomeIcon onClick={() => handleChange()} className="chevron" icon={faChevronUp} />)
+    const chevron = (isOpen ? <FontAwesomeIcon onClick={() => handleChange()} className="chevron" icon={faChevronUp} /> : <FontAwesomeIcon onClick={() => handleChange()} className="chevron" icon={faChevronDown} />)
     const urlModify = production.pi+"/"+production._id
     
     return (
