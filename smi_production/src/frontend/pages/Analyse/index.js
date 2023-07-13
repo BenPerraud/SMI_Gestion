@@ -11,7 +11,7 @@ import formatTrend from "../../components/formatTrend"
 function Analyse () {
     const [productions, setProductions] = useState([])
     const [prodDesignation, setProdDesignation] = useState({})
-    const [productionsCopy, setProductionsCopy] = useState ([])
+    const [pi, setPi] = useState (0)
 
     function getDate (e) {
         try {
@@ -30,8 +30,16 @@ function Analyse () {
 
     function reinitiate (e) {
         e.preventDefault()
-        console.log(productions)
-        setProductions(productionsCopy)
+        fetch(
+            "http://192.168.74.1:3001/api/production/"+pi, 
+            {headers: {
+                "Accept": "*",
+                "Content-Type": "*/*",
+                "Origin": "*",
+            }})
+            .then(res => res.json())
+            .then(res => formatDatas(res))
+            .catch(error => alert( error ))
         document.getElementById('formDate').reset()
     }
 
@@ -92,7 +100,6 @@ function Analyse () {
     
             formattedProd.sort((a, b) => a.dateTime - b.dateTime)
             const result = formatTrend(formattedProd)
-            setProductionsCopy(result)
 
             return setProductions(result)
         } catch (err) {
@@ -106,6 +113,7 @@ function Analyse () {
         const form = e.target
         const formData = new FormData(form)
         const piInput = formData.get("PI")
+        setPi(piInput)
 
         fetch(
             "http://192.168.74.1:3001/api/production/"+piInput, 
