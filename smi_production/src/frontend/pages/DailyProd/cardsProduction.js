@@ -34,9 +34,9 @@ function CardsProduction ({production}) {
                 {chevron}
             </div>
             <div className="cardsProdFlexProd">
-                <div className="cardsProdFlexProdElement">Qte produite : {production.quantityProd.toLocaleString()} pcs</div>
+                <div className="cardsProdFlexProdElement">Qte compteur : {production.quantityProd.toLocaleString()} pcs</div>
                 <div className="cardsProdFlexProdElement">Qte rebut : {production.quantityWaste.toLocaleString()} pcs ({((production.quantityWaste/production.quantityProd)*100).toFixed(1)}%)</div>
-                <div className="cardsProdFlexProdElement validProd">Qte validée : {(production.quantityProd-production.quantityWaste).toLocaleString()} pcs</div>
+                <div className="cardsProdFlexProdElement validProd">Qte bonne : {(production.quantityProd-production.quantityWaste).toLocaleString()} pcs</div>
                 <div className="cardsProdFlexProdElementTheo">(Qte théorique : {Math.floor(((production.quantityTheorical/420)*production.prodTime)).toLocaleString()} pcs)</div>
             </div>
             <div className={isOpen ? "cardsProdFlexDetails"  : "closed"}>
