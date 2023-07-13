@@ -60,7 +60,7 @@ function DailyProd () {
     useEffect(() => {
         const reqDate = parseInt(dateURL)
         fetch(
-            {productionAPI}+"/date/"+dateURL, 
+            productionAPI+"/date/"+dateURL, 
             {
                 method: "GET",
                 headers: {
