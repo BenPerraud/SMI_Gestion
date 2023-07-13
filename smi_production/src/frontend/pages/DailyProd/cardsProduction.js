@@ -41,7 +41,7 @@ function CardsProduction ({production}) {
             </div>
             <div className={isOpen ? "cardsProdFlexDetails"  : "closed"}>
                 <div className="cardsProdFlexDesi">Détails de la production :</div>
-                <div className="cardsDetailsElement">- Temps de production : {convertToHours(production.prodTime)} (prod hors rebut/h : {Math.trunc(((production.quantityProd-production.quantityWaste)/(production.prodTime/60))).toLocaleString()} pcs)</div>
+                <div className="cardsDetailsElement">- Temps de production : {convertToHours(production.prodTime)} (prod hors rebut/h : {Math.trunc(((production.quantityProd-production.quantityWaste)/(production.prodTime/60))).toLocaleString()} pcs pour un théorique de {Math.trunc(production.quantityTheorical/7).toLocaleString()} pcs / h)</div>
                 <div>
                     <div className="cardsDetailsElement">- Opérateur/trice :</div>
                     {(arrayOperators(production.operator)).map(operator => <div className="cardsProdFlexProdElementTheo padding" key={operator}>{operator}</div>)}
