@@ -30,7 +30,7 @@ function CardsProduction ({production}) {
     return (
         <div key={production._id} className="cardsProdFlex">
             <div className="cardsProdDetails">
-                <div className="cardsProdFlexDesi underline">{production.client} / {production.designation}</div>
+                <div className="cardsProdFlexDesi underline">{production.client} / {production.designation} (PI : 00{production.pi})</div>
                 {chevron}
             </div>
             <div className="cardsProdFlexProd">
