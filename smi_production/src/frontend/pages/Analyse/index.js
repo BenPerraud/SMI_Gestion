@@ -12,7 +12,6 @@ function Analyse () {
     const [productions, setProductions] = useState([])
     const [prodDesignation, setProdDesignation] = useState({})
     const [productionsCopy, setProductionsCopy] = useState ([])
-    console.log(productionsCopy)
 
     function getDate (e) {
         try {
@@ -31,6 +30,7 @@ function Analyse () {
 
     function reinitiate (e) {
         e.preventDefault()
+        console.log(productions)
         setProductions(productionsCopy)
         document.getElementById('formDate').reset()
     }
