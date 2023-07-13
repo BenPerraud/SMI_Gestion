@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 import defaultDate from "../../components/defaultDate"
 import CardsProduction from "./cardsProduction.js"
 import TrsDaily from "./trsDaily"
-import productionAPI from "./../../components/routesApi"
+import {productionAPI} from "./../../components/routesApi"
 
 
 function DailyProd () {
