@@ -111,7 +111,7 @@ function TrsGlobal () {
 
     useEffect(() => {
         fetch(
-            {productionAPI},
+            productionAPI,
             {headers: {
                 "Accept": "*",
                 "Content-Type": "*/*",

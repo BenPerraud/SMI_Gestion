@@ -14,7 +14,7 @@ function ProdMonitoring () {
         const pi = formData.get("pi")
 
         fetch(
-            {productionAPI}+"/"+pi,
+            productionAPI+"/"+pi,
             {headers: {
                 "Accept": "*",
                 "Content-Type": "*/*",

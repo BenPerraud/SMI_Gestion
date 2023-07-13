@@ -4,7 +4,7 @@ function DeleteOperator (x, {formState, setFormState}) {
     const id = x._id
 
     fetch(
-        {operatorAPI}+"/"+id,
+        operatorAPI+"/"+id,
         {method: "DELETE",
         headers: {
             "Origin": "*",

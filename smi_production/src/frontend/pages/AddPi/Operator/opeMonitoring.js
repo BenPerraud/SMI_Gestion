@@ -9,7 +9,7 @@ function OpeMonitoring () {
     
     useEffect (() => {
         fetch(
-            {operatorAPI},
+            operatorAPI,
             {headers: {
                 "Accept": "*",
                 "Content-Type": "*/*",

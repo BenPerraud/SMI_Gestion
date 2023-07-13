@@ -12,7 +12,7 @@ function AddProduction ({pi, client, designation, setCount}) {
     
     useEffect (() => {
         fetch(
-            {operatorAPI},
+            operatorAPI,
             {headers: {
                 "Accept": "*",
                 "Content-Type": "*/*",
@@ -55,7 +55,7 @@ function AddProduction ({pi, client, designation, setCount}) {
                 alert("Un(e) opérateur/trice a été renseigné au moins deux fois, veuillez recommencer.")
             } else {
                 fetch(
-                    {productionAPI}+"/"+pi,
+                    productionAPI+"/"+pi,
                     {method: 'POST',
                     body: formData,
                     headers: {

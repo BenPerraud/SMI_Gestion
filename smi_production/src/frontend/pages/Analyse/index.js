@@ -32,7 +32,7 @@ function Analyse () {
     function reinitiate (e) {
         e.preventDefault()
         fetch(
-            {productionAPI}+"/"+pi, 
+            productionAPI+"/"+pi, 
             {headers: {
                 "Accept": "*",
                 "Content-Type": "*/*",
@@ -117,7 +117,7 @@ function Analyse () {
         setPi(piInput)
 
         fetch(
-            {productionAPI}+"/"+piInput, 
+            productionAPI+"/"+piInput, 
             {headers: {
                 "Accept": "*",
                 "Content-Type": "*/*",

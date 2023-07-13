@@ -13,7 +13,7 @@ function CreateOperator ({formState, setFormState}) {
                 alert("Veuillez renseigner le prénom")
                 } else {
                     fetch(
-                        {operatorAPI},
+                        operatorAPI,
                         {method: form.method,
                         body: formData,
                         headers: {

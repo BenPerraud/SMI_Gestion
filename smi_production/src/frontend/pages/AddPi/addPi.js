@@ -22,7 +22,7 @@ function AddPi () {
                 form.reset()
             } else {
                 fetch(
-                    {productionAPI},
+                    productionAPI,
                     {method: 'POST', 
                     body: formData,
                     headers: {
@@ -57,7 +57,7 @@ function AddPi () {
 
     useEffect(() => {
         fetch(
-            {productionAPI},
+            productionAPI,
             {headers: {
                 "Accept": "*",
                 "Content-Type": "*/*",

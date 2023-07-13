@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+import { operatorAPI } from "../../components/routesApi"
+import { productionAPI } from "../../components/routesApi"
 
 function ModifyProd () {
     const [production, setProduction] = useState({})
@@ -11,7 +13,7 @@ function ModifyProd () {
     /* On récupère les opérateurs */
     useEffect (() => {
         fetch(
-            "http://192.168.74.1:3001/api/operator",
+            operatorAPI,
             {headers: {
                 "Origin": "*",
             }})
@@ -80,7 +82,7 @@ function ModifyProd () {
         }
 
         fetch(
-            "http://192.168.74.1:3001/api/production/"+params.pi,
+            productionAPI+"/"+params.pi,
             {
                 headers: {
                 "Origin": "*",
@@ -120,7 +122,7 @@ function ModifyProd () {
                 alert("Un(e) opérateur/trice a été renseigné au moins deux fois, veuillez recommencer.")
             } else {
             fetch(
-                "http://192.168.74.1:3001/api/production/"+params.pi+"/"+params._id,
+                productionAPI+"/"+params.pi+"/"+params._id,
                 {method: 'PUT',
                 body: formData,
                 headers: {

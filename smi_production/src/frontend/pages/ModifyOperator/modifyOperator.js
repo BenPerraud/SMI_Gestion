@@ -1,11 +1,12 @@
 import "./modifyOperator.css"
 import { useParams, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
+import { operatorAPI } from "../../components/routesApi"
 
 function ModifyOperator () {
     const [operator, setOperator] = useState([])
     const params = useParams()
-    const urlFetch = ["http://192.168.74.1:3001/api/operator/", params.id].join("")
+    const urlFetch = [operatorAPI+"/", params.id].join("")
     const navigate = useNavigate()
 
     useEffect (() => {
