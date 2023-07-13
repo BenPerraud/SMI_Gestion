@@ -8,7 +8,7 @@ import formatTrendTot from "../../components/formatTrendTot"
 
 function TrsGlobal () {
     const [trs, setTrs] = useState({})
-    const [trsCopy, setTrsCopy] = useState ({})
+    const [count, setCount] = useState (0)
 
     function getDate (e) {
         try{
@@ -26,7 +26,7 @@ function TrsGlobal () {
     }
 
     function reinitiate () {
-        setTrs(trsCopy)
+        setCount(count+1)
         document.getElementById('formDate').reset()
     }
 
@@ -105,7 +105,6 @@ function TrsGlobal () {
             result.sort((a, b) => a.date - b.date)
         }
         formatTrendTot(result)
-        setTrsCopy(result)
         return result
     }
 
@@ -120,7 +119,7 @@ function TrsGlobal () {
             .then(res => res.json())
             .then(res => setTrs(formatDatas(res)))
             .catch(error => alert("Erreur : " + error))
-    }, [])
+    }, [count])
     
     const toPercent = (decimal) => `${(decimal).toFixed(1)}%`
 
