@@ -18,8 +18,7 @@ function defaultDate () {
         }else {
             return day
         }}
-
-
+    
     if (date.getDay() === 1) {
         const newDate = new Date(dateOfTheDay.getTime()-3*oneDayMills)
         const defaultDate = [newDate.getFullYear(), dateMonth(newDate), dateDay(newDate)].join("-")
@@ -28,7 +27,7 @@ function defaultDate () {
         const newDate = new Date(dateOfTheDay.getTime()-oneDayMills)
         const defaultDate = [newDate.getFullYear(), dateMonth(newDate), dateDay(newDate)].join("-")
         return defaultDate
-    } 
+    }
 }
 
 export default defaultDate

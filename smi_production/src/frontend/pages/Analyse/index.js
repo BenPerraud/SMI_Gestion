@@ -1,18 +1,37 @@
 import "./index.css"
-import { useState } from "react"
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, ResponsiveContainer, Tooltip } from "recharts"
+import { useState, useEffect } from "react"
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, ResponsiveContainer, Tooltip, Legend } from "recharts"
 import CustomTooltipCadence from "./tooltipCadence"
 import CustomTooltipWaste from "./tooltipWaste"
 import CustomTooltipTrs from "./tooltipTrs"
 import convertDateFormToTime from "../../components/convertDateFormtoTime"
 import formatTrend from "../../components/formatTrend"
 import { productionAPI } from "../../components/routesApi"
+import { useLocation } from "react-router-dom"
 
 
 function Analyse () {
+    const location = useLocation()
     const [productions, setProductions] = useState([])
     const [prodDesignation, setProdDesignation] = useState({})
     const [pi, setPi] = useState (0)
+
+    useEffect(() => {
+        if (location.state !== null) {
+            setPi(location.state.pi)
+
+            fetch(
+                productionAPI+"/"+location.state.pi, 
+                {headers: {
+                    "Accept": "*",
+                    "Content-Type": "*/*",
+                    "Origin": "*",
+                }})
+                .then(res => res.json())
+                .then(res => formatDatas(res))
+                .catch(error => alert( error ))
+            }
+    }, [location.state])
 
     function getDate (e) {
         try {
@@ -91,7 +110,7 @@ function Analyse () {
                     temps_production: i.prodTime,
                     opérateur: arrayOperator,
                     cadenceTheorique_heure: x.quantityTheorical/7,
-                    cadenceReelle_heure: (i.quantityProd-i.quantityWaste)/(i.prodTime/60),
+                    cadenceReelle_heure: (i.quantityProd)/(i.prodTime/60),
                     commentaires: i.comments,
                     trs: ((i.quantityProd-i.quantityWaste)/(i.prodTime/60))/(x.quantityTheorical/7)*100,
                     trs_max: 100
@@ -132,12 +151,14 @@ function Analyse () {
 
     const toPercent = (decimal) => `${(decimal).toFixed(1)}%`
 
+   
+
     return (
         <div className="flexColumnGeneral">
             <div className="rowGap20px">
                 <h1 className="titleH1">Etape 1 : renseigner le PI souhaité</h1>
                 <form className="form" name="form" method="get" encType="multipart/form-data" onSubmit={getPiForAnalyse}>
-                    <label>PI : 00<input className="formElement" type="text" name="PI"></input></label>
+                    <label>PI : 00<input className="formElement" type="text" name="PI" ></input></label>
                     <button className="formBtn">Analyser</button>
                 </form>
             </div>
@@ -152,17 +173,22 @@ function Analyse () {
                     <button className="reinitiate" onClick={reinitiate}>Réinitialiser les dates</button>
                 </div>
                 <div className="rowGap15px">
-                    <h2 className="titleH2">Cadence à l'heure (hors rebuts)</h2>
+                    <h2 className="titleH2">TRS (pièces bonnes en %)</h2>
                     <div className="lineChart">
                         <ResponsiveContainer width="100%" height={400}>
                             <LineChart data={productions}>
                                 <CartesianGrid stroke="#9ba9c6" strokeDasharray="3 3"/>
-                                <YAxis />
+                                <YAxis yAxisId="left" tickFormatter={toPercent} />
+                                <YAxis yAxisId="right" orientation="right" hide={true}/>
                                 <XAxis dataKey="date" tick={{fontSize: 15}} height={65} angle={-45} textAnchor="end" tickSize={12}/>
-                                <Line type="monotone" dataKey="cadenceReelle_heure" stroke="#203864" strokeWidth={2} dot={false}/>
-                                <Line type="monotone" dataKey="cadenceTheorique_heure" stroke="#882e3d" strokeWidth={2} dot={false}/>
-                                <Line type="monotone" dataKey="cadence_trend" connectNulls={true} stroke="#e52fd7" strokeWidth={2} dot={false} />
-                                <Tooltip content={<CustomTooltipCadence />} />
+                                <Line yAxisId="left" type="monotone" dataKey="trs" stroke="#203864" strokeWidth={2} dot={false}/>
+                                <Line yAxisId="left" type="monotone" dataKey="trs_max" stroke="#882e3d" strokeWidth={2} dot={false}/>
+                                <Line yAxisId="right" style={{display: "none"}} type="monotone" dataKey="cadenceReelle_heure"/>
+                                <Line yAxisId="right" style={{display: "none"}} type="monotone" dataKey="cadenceTheorique_heure"/>
+                                <Line yAxisId="right" style={{display: "none"}} type="monotone" dataKey="taux_de_rebut"/>
+                                <Line yAxisId="left" type="monotone" dataKey="trs_trend" connectNulls={true} stroke="#e52fd7" strokeWidth={2} dot={false} />
+                                <Legend verticalAlign="top" payload={[{value: "TRS", type: "line", color:"#203864"}, {value: "TRS max", type: "line", color:"#882e3d"}, {value: "Tendance", type: "line", color:"#e52fd7"}]}/>
+                                <Tooltip content={<CustomTooltipTrs />} />
                             </LineChart>
                         </ResponsiveContainer>
                     </div>
@@ -186,21 +212,18 @@ function Analyse () {
                     </div>
                 </div>
                 <div className="rowGap15px">
-                    <h2 className="titleH2">TRS</h2>
+                    <h2 className="titleH2">Cadence à l'heure (toutes pièces confondues) en valeur</h2>
                     <div className="lineChart">
                         <ResponsiveContainer width="100%" height={400}>
                             <LineChart data={productions}>
                                 <CartesianGrid stroke="#9ba9c6" strokeDasharray="3 3"/>
-                                <YAxis yAxisId="left" tickFormatter={toPercent} />
-                                <YAxis yAxisId="right" orientation="right" hide={true}/>
+                                <YAxis />
                                 <XAxis dataKey="date" tick={{fontSize: 15}} height={65} angle={-45} textAnchor="end" tickSize={12}/>
-                                <Line yAxisId="left" type="monotone" dataKey="trs" stroke="#203864" strokeWidth={2} dot={false}/>
-                                <Line yAxisId="left" type="monotone" dataKey="trs_max" stroke="#882e3d" strokeWidth={2} dot={false}/>
-                                <Line yAxisId="right" style={{display: "none"}} type="monotone" dataKey="cadenceReelle_heure"/>
-                                <Line yAxisId="right" style={{display: "none"}} type="monotone" dataKey="cadenceTheorique_heure"/>
-                                <Line yAxisId="right" style={{display: "none"}} type="monotone" dataKey="taux_de_rebut"/>
-                                <Line yAxisId="left" type="monotone" dataKey="trs_trend" connectNulls={true} stroke="#e52fd7" strokeWidth={2} dot={false} />
-                                <Tooltip content={<CustomTooltipTrs />} />
+                                <Line type="monotone" dataKey="cadenceReelle_heure" stroke="#203864" strokeWidth={2} dot={false}/>
+                                <Line type="monotone" dataKey="cadenceTheorique_heure" stroke="#882e3d" strokeWidth={2} dot={false}/>
+                                <Line type="monotone" dataKey="cadence_trend" connectNulls={true} stroke="#e52fd7" strokeWidth={2} dot={false} />
+                                <Legend verticalAlign="top" payload={[{value: "Cadence", type: "line", color:"#203864"}, {value: "Cadence théorique", type: "line", color:"#882e3d"}, {value: "Tendance", type: "line", color:"#e52fd7"}]}/>
+                                <Tooltip content={<CustomTooltipCadence />} />
                             </LineChart>
                         </ResponsiveContainer>
                     </div>
