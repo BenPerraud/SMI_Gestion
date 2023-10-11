@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
-import defaultDate from "../../components/defaultDate"
 import CardsProduction from "./cardsProduction.js"
 import TrsDaily from "./trsDaily"
 import {productionAPI} from "./../../components/routesApi"
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 function DailyProd () {
@@ -43,15 +45,56 @@ function DailyProd () {
     const navigate = useNavigate()
     const params = (useLocation().pathname).substring(6)
     const [dateURL, setdateURL] = useState(params)
+    const oneDay = 86400000
+
+    function dayBefore () {
+        const newDate = parseInt(dateURL)-oneDay
+        const redirect = "/date/"+newDate
+        navigate(redirect)
+        setdateURL(newDate)
+    }
+
+    function dayAfter() {
+        const newDate = parseInt(dateURL)+oneDay
+        const redirect = "/date/"+newDate
+        navigate(redirect)
+        setdateURL(newDate)
+    }
+
+    function convertParams () {
+        function dateMonth (x) {
+            const month = x.getMonth()+1
+            if (month < 10) {
+                return String("0"+month)
+            }else {
+                return month
+            }}
+    
+        function dateDay (x) {
+            const day = x.getDate()
+            if (day < 10) {
+                return String("0"+day)
+            }else {
+                return day
+            }}
+
+        const newDate = new Date(parseInt(params))
+        const value = [newDate.getFullYear(), dateMonth(newDate), dateDay(newDate)].join("-")
+        return value
+    }
+
 
     function formDate (e) {
         e.preventDefault()
-
-        const form = (e.target.value).split("-")
-        const date = (new Date(form[0], form[1]-1, form[2], 0, 0, 0)).getTime()
-        const redirect = "/date/"+date
-        navigate(redirect)
-        setdateURL(date)
+        if (e.target.valueAsDate === null) {
+            return    
+        } else {
+            const form = (e.target.value).split("-")
+            const date = (new Date(form[0], form[1]-1, form[2], 0, 0, 0)).getTime()
+            const redirect = "/date/"+date
+            navigate(redirect)
+            setdateURL(date)
+        }
     }
 
     /* Fonction fetch pour récupérer les productions et les modifier avec uniquement les productions du jour */
@@ -77,13 +120,21 @@ function DailyProd () {
 
     return (
         <div className="flexColumnGeneral rowGap20px">
-            <div className="trsDailyFlex">
-                <h1 className="titleH1">Production de la journée : </h1>
+            <div className="dateTRSdaily">
+                <div className="trsDailyFlex">
+                    <h1 className="titleH1">Production de la journée : </h1>
+                    <div className="dayBeforeAfter">
+                        <form>
+                            <label className="cardsOperatorElement bold">Date : <input onChange={formDate} value={convertParams()} className="formElement widthDate" type="date" id="date" /></label>
+                        </form>
+                        <div className="chevronDay">
+                            <FontAwesomeIcon onClick={() => dayBefore()} className="chevron" icon={faChevronLeft} />
+                            <FontAwesomeIcon onClick={() => dayAfter()} className="chevron" icon={faChevronRight} />
+                        </div>
+                    </div>
+                </div>
                 <TrsDaily productions={productions}/>
             </div>
-            <form>
-                <label className="cardsOperatorElement bold">Date : <input onChange={formDate} className="formElement widthDate" type="date" id="date" defaultValue={defaultDate()} /></label>
-            </form>
             <div className="rowGap20px">
                 {productions.map(production => <CardsProduction production={production} key={production._id}/>)}
             </div>

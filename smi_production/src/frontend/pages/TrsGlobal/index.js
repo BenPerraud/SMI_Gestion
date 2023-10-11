@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, ResponsiveContainer, Tooltip } from "recharts"
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, ResponsiveContainer, Tooltip, Legend } from "recharts"
 import CustomTooltipWasteTot from "./tooltipWasteTot"
 import CustomTooltipTrsTot from "./tooltipTrsTot"
 import CustomTooltipCadenceTot from "./tooltipCadenceTot"
@@ -83,24 +83,17 @@ function TrsGlobal () {
 
             const test = array.filter(x => x.date === l)
             const numberOfProd = test.length
-            const qteTheo = test.map(test => test.qteTheo).reduce((prev, curr) => prev + curr, 0)
-            const qteRebut = test.map(test => test.qteRebut).reduce((prev, curr) => prev + curr, 0)
-            const qteProd = test.map(test => test.qteProd).reduce((prev, curr) => prev + curr, 0)
-            const prodTime = test.map(test => test.prodTime).reduce((prev, curr) => prev + curr, 0)
+            const sumIndividualTrs = test.map(test => ((test.qteProd-test.qteRebut)/((test.qteTheo/420)*test.prodTime))).reduce((prev, curr) => prev + curr, 0)
+            const sumIndividualCadence = test.map(test => (test.qteProd/((test.qteTheo/420)*test.prodTime))).reduce((prev, curr) => prev + curr, 0)
+            const sumIndividualWaste = test.map(test => (test.qteRebut/test.qteProd)).reduce((prev, curr) => prev + curr, 0)
             const objectFormatted = {
                 date: l,
                 dateProd: dateProd,
-                qteTheoTot: qteTheo,
-                qteRebutTot: qteRebut,
-                qteProdTot: qteProd,
-                prodTimeTot: prodTime,
-                prodTimeTheorical: numberOfProd*60*7,
-                cadenceRealTot: (qteProd-qteRebut)/(prodTime/60),
-                cadenceTheoTot: (qteTheo/(numberOfProd*7)),
-                tauxRebutTot: (qteRebut/qteProd)*100,
-                trsTot: ((qteProd-qteRebut)/qteTheo)*100,
+                cadenceRealTot: (sumIndividualCadence/numberOfProd)*100,
+                cadenceTheoTot: 100,
+                tauxRebutTot: (sumIndividualWaste/numberOfProd)*100,
+                trsTot: (sumIndividualTrs/numberOfProd)*100,
                 trsTheoTot: 100,
-                numberOfProd: numberOfProd
             }
             result.push(objectFormatted)
             result.sort((a, b) => a.date - b.date)
@@ -137,17 +130,18 @@ function TrsGlobal () {
                     <button className="reinitiate" onClick={reinitiate}>Réinitialiser les dates</button>
                 </div>
                 <div className="rowGap15px">
-                    <h2 className="titleH2">Cadence globale par heure (hors rebuts)</h2>
+                    <h2 className="titleH2">TRS global</h2>
                     <div className="lineChart">
                         <ResponsiveContainer width="100%" height={400}>
                             <LineChart data={trs}>
                                 <CartesianGrid stroke="#9ba9c6" strokeDasharray="3 3"/>
                                 <XAxis dataKey="dateProd" tick={{fontSize: 15}} height={65} angle={-45} textAnchor="end" tickSize={12}/>
-                                <YAxis yAxisId="left"/>
-                                <Line yAxisId="left" type="monotone" dataKey="cadenceRealTot" stroke="#203864" strokeWidth={2} dot={false}/>
-                                <Line yAxisId="left" type="monotone" dataKey="cadenceTheoTot" stroke="#882e3d" strokeWidth={2} dot={false}/>
-                                <Line yAxisId="left" type="monotone" dataKey="cadence_trend" connectNulls={true} stroke="#e52fd7" strokeWidth={2} dot={false}/>
-                                <Tooltip content={<CustomTooltipCadenceTot />} />
+                                <YAxis yAxisId="left" tickFormatter={toPercent}/>
+                                <Line yAxisId="left" type="monotone" dataKey="trsTot" stroke="#203864" strokeWidth={2} dot={false}/>
+                                <Line yAxisId="left" type="monotone" dataKey="trsTheoTot" stroke="#882e3d" strokeWidth={2} dot={false}/>
+                                <Line yAxisId="left" type="monotone" dataKey="trs_trend" connectNulls={true} stroke="#e52fd7" strokeWidth={2} dot={false} />
+                                <Legend verticalAlign="top" payload={[{value: "TRS", type: "line", color:"#203864"}, {value: "TRS max", type: "line", color:"#882e3d"}, {value: "Tendance", type: "line", color:"#e52fd7"}]}/>
+                                <Tooltip content={<CustomTooltipTrsTot />} />
                             </LineChart>
                         </ResponsiveContainer>
                     </div>
@@ -168,17 +162,18 @@ function TrsGlobal () {
                     </div>
                 </div>
                 <div className="rowGap15px">
-                    <h2 className="titleH2">TRS global</h2>
+                    <h2 className="titleH2">Cadence globale par heure (toutes pièces confondues)</h2>
                     <div className="lineChart">
                         <ResponsiveContainer width="100%" height={400}>
                             <LineChart data={trs}>
                                 <CartesianGrid stroke="#9ba9c6" strokeDasharray="3 3"/>
                                 <XAxis dataKey="dateProd" tick={{fontSize: 15}} height={65} angle={-45} textAnchor="end" tickSize={12}/>
                                 <YAxis yAxisId="left" tickFormatter={toPercent}/>
-                                <Line yAxisId="left" type="monotone" dataKey="trsTot" stroke="#203864" strokeWidth={2} dot={false}/>
-                                <Line yAxisId="left" type="monotone" dataKey="trsTheoTot" stroke="#882e3d" strokeWidth={2} dot={false}/>
-                                <Line yAxisId="left" type="monotone" dataKey="trs_trend" connectNulls={true} stroke="#e52fd7" strokeWidth={2} dot={false} />
-                                <Tooltip content={<CustomTooltipTrsTot />} />
+                                <Line yAxisId="left" type="monotone" dataKey="cadenceRealTot" stroke="#203864" strokeWidth={2} dot={false}/>
+                                <Line yAxisId="left" type="monotone" dataKey="cadenceTheoTot" stroke="#882e3d" strokeWidth={2} dot={false}/>
+                                <Line yAxisId="left" type="monotone" dataKey="cadence_trend" connectNulls={true} stroke="#e52fd7" strokeWidth={2} dot={false} />
+                                <Legend verticalAlign="top" payload={[{value: "Cadence", type: "line", color:"#203864"}, {value: "Cadence théorique", type: "line", color:"#882e3d"}, {value: "Tendance", type: "line", color:"#e52fd7"}]}/>
+                                <Tooltip content={<CustomTooltipCadenceTot />} />
                             </LineChart>
                         </ResponsiveContainer>
                     </div>
